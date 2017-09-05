@@ -1,0 +1,58 @@
+material jt_lambert2SG
+{
+	technique
+	{
+		pass
+		{
+			ambient 1 0 0 1
+			diffuse 1 0 0 1
+			specular 0.9 0.9 0.9 0 30
+
+			texture_unit
+			{
+			}
+		}
+
+	}
+
+}
+
+
+material jt_lambert3SG
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.5 0.5 1 1
+			diffuse 0.5 0.5 1 1
+			specular 0.9 0.9 0.9 0 30
+
+			texture_unit
+			{
+			}
+		}
+
+	}
+
+}
+
+
+material jt_lambert4SG
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 1 0 1
+			diffuse 0 1 0 1
+			specular 0.9 0.9 0.9 0 30
+
+			texture_unit
+			{
+			}
+		}
+
+	}
+
+}

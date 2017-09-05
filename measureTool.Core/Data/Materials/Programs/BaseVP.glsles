@@ -1,0 +1,29 @@
+#version 150
+
+uniform mat4 worldViewProjMatrix;
+uniform mat4 worldMatrix;
+uniform mat4 textureMatrix;
+
+in vec4 vertex;
+in vec3 normal;
+in vec4 uv0;
+in vec4 colour;
+
+out vec4 oUv;
+out vec3 oNormal;
+out vec3 oPosition;
+out vec4 oColour;
+
+void main()
+{
+	gl_Position = worldViewProjMatrix * vertex;
+	oUv = textureMatrix * uv0;
+	oNormal = normal;
+	oPosition = (worldMatrix * vertex).xyz;
+	
+	oColour = colour;
+	
+#ifdef	FLIP_V
+	oUv.y = 1 - oUv.y;
+#endif
+}

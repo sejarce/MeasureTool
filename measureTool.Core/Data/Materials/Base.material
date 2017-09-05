@@ -1,0 +1,166 @@
+material Mat/Base/Color
+{
+	technique
+	{
+		pass
+		{
+			vertex_program_ref VP/Base
+			{
+			}
+			fragment_program_ref FP/Base/Color
+			{
+				
+			}
+		}
+	}
+}
+
+material Mat/Base/LineColor
+{
+	technique
+	{
+		pass
+		{
+			vertex_program_ref VP/Base
+			{
+			}
+			fragment_program_ref FP/Base/Color
+			{
+				param_named_auto	colour	custom	0
+			}
+		}
+	}
+}
+
+material Mat/Base/Color/WithoutLight
+{
+	technique
+	{
+		pass
+		{
+			vertex_program_ref VP/Base
+			{
+			}
+			fragment_program_ref FP/Base/Color/WithoutLight
+			{
+				
+			}
+		}
+	}
+}
+
+
+material Mat/Base/VertexColor
+{
+	technique
+	{
+		pass
+		{
+			vertex_program_ref VP/Base
+			{
+			}
+			fragment_program_ref FP/Base/VertexColor
+			{
+				
+			}
+		}
+	}
+}
+
+
+material Mat/Base/Tex
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture GreenSkin.jpg
+				tex_address_mode mirror
+			}
+			
+			vertex_program_ref VP/Base
+			{
+			}
+			
+			fragment_program_ref FP/Base/Tex
+			{
+				param_named diffuseTex int 0
+			}
+		}
+	}
+}
+
+material Mat/Base/Tex/FlipV : Mat/Base/Tex
+{
+	technique
+	{
+		pass
+		{			
+			vertex_program_ref VP/Base/FlipV
+			{
+				
+			}
+		}
+	}
+}
+
+material Mat/Base/ShowUV
+{
+	technique
+	{
+		pass
+		{			
+			cull_hardware none
+			
+			vertex_program_ref VP/Base
+			{
+			}
+			
+			fragment_program_ref FP/ShowUV
+			{
+			}
+		}
+	}
+}
+
+material Mat/Base/StdQuad
+{
+	technique
+	{
+		pass
+		{
+			//depth_check off
+			depth_write off
+			
+			cull_hardware none
+			
+			texture_unit
+			{
+				tex_address_mode mirror
+			}
+			
+			vertex_program_ref VP/StdQuad
+			{
+			}
+			fragment_program_ref FP/StdQuad
+			{
+			}
+		}
+	}
+}
+
+material Mat/Base/StdQuad/FlipV : Mat/Base/StdQuad
+{
+	technique
+	{
+		pass
+		{			
+			vertex_program_ref VP/StdQuad/FlipV
+			{
+				
+			}
+		}
+	}
+}

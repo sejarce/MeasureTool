@@ -1,0 +1,273 @@
+compositor_node measureNode
+{
+	in 0 rt0
+	//texture rt0 target_width target_height PF_R8G8B8A8
+	
+	target rt0
+	{
+		pass clear
+		{
+			colour_value 0 0 0 1
+		}
+
+		//background
+		pass render_quad
+		{
+			material measureTool/Background
+		}
+
+		//mesh
+		pass render_scene
+		{
+			rq_last 70
+		}
+		
+		pass clear
+		{
+			buffers depth
+		}
+		
+		//line
+		pass render_scene
+		{
+			rq_first 71
+			rq_last 80
+		}
+		
+		pass clear
+		{
+			buffers depth
+		}
+		
+		//aux
+		pass render_scene
+		{
+			rq_first 81
+			rq_last 90
+		}
+		
+		pass clear
+		{
+			buffers depth
+		}
+		
+		//manipulator
+		pass render_scene
+		{
+			rq_first 91
+		}
+	}
+	
+	out 0 rt0
+}
+
+compositor_node humanEdge
+{
+	in 0 rt0
+	in 1 rt1
+	
+	target rt0
+	{
+		pass render_quad
+		{			
+			material measureTool/Edge
+			input 0 rt1
+		}
+	}	
+	out 0 rt0
+}
+
+
+compositor_node PointCloudHuman
+{
+	texture rt0 target_width target_height PF_R8G8B8A8
+	//texture rt1 target_width target_height PF_R8G8B8A8
+	//in 0 rt0
+	
+	target rt0
+	{
+		pass clear
+		{
+			colour_value 0 0 0 0
+		}
+		
+		//background
+		//pass render_quad
+		//{
+		//	material measureTool/Background
+		//}
+		
+		//mesh
+		pass render_scene
+		{
+			rq_last 70
+		}
+		
+		pass clear
+		{
+			buffers depth
+		}
+		
+		//line
+		pass render_scene
+		{
+			rq_first 71
+			rq_last 80
+		}
+		
+		pass clear
+		{
+			buffers depth
+		}
+		
+		//aux
+		pass render_scene
+		{
+			rq_first 81
+			rq_last 90
+		}
+		
+		pass clear
+		{
+			buffers depth
+		}
+		
+		//manipulator
+		pass render_scene
+		{
+			rq_first 91
+		}
+	}	
+	
+	out 0 rt0
+	out 1 rt0
+}
+
+compositor_node DownSampler
+{
+	texture rt0 target_width_scaled 0.25 target_height_scaled 0.25 PF_R8G8B8A8
+	//in 0 rt0
+	in 0 rt1
+	in 1 rt_remain
+	
+	target rt0
+	{
+		pass clear
+		{
+			colour_value 0 0 0 0
+		}
+		
+		//mesh
+		pass render_quad
+		{
+			material measureTool/DownSampler
+			input 0 rt1
+		}
+	}
+	
+	out 0 rt0
+	out 1 rt_remain
+}
+
+compositor_node GausssBlurH
+{
+	in 0 rt1
+	in 1 rt_remain
+	texture rt0 target_width_scaled 0.25 target_height_scaled 0.25 PF_R8G8B8A8
+	//in 0 rt0
+	
+	target rt0
+	{
+		pass clear
+		{
+			colour_value 0 0 0 0
+		}
+		
+		//mesh
+		pass render_quad
+		{
+			material measureTool/GaussBlurH
+			input 0 rt1
+		}
+	}
+	out 0 rt0
+	out 1 rt_remain
+}
+
+compositor_node GausssBlurV
+{
+	in 0 rt1
+	in 1 rt_remain
+	texture rt0 target_width_scaled 0.25 target_height_scaled 0.25 PF_R8G8B8A8
+	//in 0 rt0
+	
+	target rt0
+	{
+		pass clear
+		{
+			colour_value 0 0 0 0
+		}
+		
+		//mesh
+		pass render_quad
+		{
+			material measureTool/GaussBlurV
+			input 0 rt1
+		}
+	}
+	
+	out 0 rt0
+	out 1 rt_remain
+}
+
+compositor_node test
+{
+	in 1 rt_remain
+	in 0 rt0
+	
+	out 0 rt0
+	out 1 rt_remain
+}
+
+compositor_node ToneMapping
+{
+	in 0 rt0
+	in 1 rt1
+	in 2 rt2
+	
+	target rt0
+	{
+		pass clear
+		{
+			colour_value 0 0 0 0
+		}
+		
+		//background
+		//pass render_quad
+		//{
+		//	material measureTool/Background
+		//}
+		
+		pass render_quad
+		{
+			material measureTool/ToneMapping
+			input 1 rt1
+			input 2 rt2
+		}
+	}
+	
+	out 0 rt0	
+}
+
+workspace measureWorkspace
+{	
+	//connect PointCloudHuman 0 1 DownSampler 0 1
+	//connect DownSampler 0 1 GausssBlurH 0 1
+	//connect GausssBlurH 0 1 GausssBlurV 0 1
+	
+	//connect GausssBlurV 0 1 test 0 1
+	//connect test 0 1 ToneMapping 2 1	
+	//connect_output ToneMapping 0
+	
+	connect_output measureNode 0
+}

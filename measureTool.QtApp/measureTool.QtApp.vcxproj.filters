@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="qml">
+      <UniqueIdentifier>{ccd8da7b-2f14-4a09-9181-8a6f8bd99aa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{27286ccd-84ea-470b-b6cd-efe20ceb689f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="QTApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="QT5RenderWindow.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="DataWrapper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EventWrapper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="SysEventRecorderImp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="DataModel.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="QT5RenderWindow.h">
+      <Filter>src</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DataWrapper.h">
+      <Filter>src</Filter>
+    </CustomBuild>
+    <CustomBuild Include="EventWrapper.h">
+      <Filter>src</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DataModel.h">
+      <Filter>src</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="QTApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="res\resource.h">
+      <Filter>res</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="qml\DataItem.qml">
+      <Filter>qml</Filter>
+    </None>
+    <None Include="qml\main.qml">
+      <Filter>qml</Filter>
+    </None>
+    <None Include="qml\NewDataItem.qml">
+      <Filter>qml</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\icon_app.ico">
+      <Filter>res</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\measureTool.QtApp.rc">
+      <Filter>res</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

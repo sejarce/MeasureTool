@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package yzm;
+
+import "YZMMeasureItem.proto";
+
+message MeasureDocument
+{
+	uint32		doc_index = 1;
+	repeated MeasureItem item_list = 3;
+	Vector3		croth_point = 4;
+	Vector3		left_armpit_point = 5;
+	Vector3		right_armpit_point = 6;
+}

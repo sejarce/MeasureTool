@@ -1,0 +1,377 @@
+import * from "Base.material"
+
+material measureTool/Background : Mat/Base/StdQuad
+{
+}
+
+material measureTool/Edge
+{
+	technique
+	{
+		pass
+		{
+			//depth_check off
+			depth_write off
+			
+			cull_hardware none
+			
+			texture_unit
+			{
+				tex_address_mode mirror
+			}
+			
+			vertex_program_ref VP/StdQuad
+			{
+			}
+			fragment_program_ref FP/Edge
+			{
+				param_named_auto inv_width inverse_viewport_width 
+				param_named_auto inv_height inverse_viewport_height
+			}
+		}
+	}
+}
+
+material measureTool/DownSampler
+{
+	technique
+	{
+		pass
+		{
+			depth_write off
+			
+			cull_hardware none			
+		
+			texture_unit
+			{
+				tex_address_mode mirror
+			}
+			
+			vertex_program_ref VP/StdQuad
+			{
+			}
+			fragment_program_ref FP/DownSampler
+			{
+				param_named_auto inv_width inverse_viewport_width 
+				param_named_auto inv_height inverse_viewport_height
+			}
+		}
+	}
+}
+
+material measureTool/GaussBlurH
+{
+	technique
+	{
+		pass
+		{
+			depth_write off
+			
+			cull_hardware none
+			
+			texture_unit
+			{
+				tex_address_mode mirror
+			}
+			
+			vertex_program_ref VP/StdQuad
+			{
+			}
+			fragment_program_ref FP/GaussBlurH
+			{
+				param_named_auto inv_texture_size inverse_texture_size 0 
+			}
+		}
+	}
+}
+
+material measureTool/GaussBlurV
+{
+	technique
+	{
+		pass
+		{
+			depth_write off
+			
+			cull_hardware none
+			
+			texture_unit
+			{
+				tex_address_mode mirror
+			}
+			
+			vertex_program_ref VP/StdQuad
+			{
+			}
+			fragment_program_ref FP/GaussBlurV
+			{
+				param_named_auto inv_texture_size inverse_texture_size 0 
+			}
+		}
+	}
+}
+
+material measureTool/ToneMapping
+{
+	technique
+	{
+		pass
+		{
+			depth_write off
+			
+			cull_hardware none
+			
+			texture_unit 0
+			{
+				tex_address_mode mirror
+			}
+			
+			texture_unit 1
+			{
+				tex_address_mode mirror
+			}
+			
+			texture_unit 2
+			{
+				tex_address_mode mirror
+			}
+			
+			vertex_program_ref VP/StdQuad
+			{
+			}
+			fragment_program_ref FP/ToneMapping
+			{
+				param_named diffuseTex int 0
+				param_named baseMap int 1
+				param_named blurMap int 2
+				param_named_auto inv_width inverse_viewport_width 
+				param_named_auto inv_height inverse_viewport_height
+			}
+		}
+	}
+}
+
+material measureTool/Grid
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture grid.png
+				tex_address_mode mirror
+				filtering anisotropic anisotropic anisotropic
+			}
+			
+			vertex_program_ref VP/Base
+			{
+			}
+			
+			fragment_program_ref FP/Base/Tex
+			{
+				param_named diffuseTex int 0
+			}
+		}
+	}
+}
+
+material measureTool/SelectedColor
+{
+	technique
+	{
+		pass
+		{
+			point_size 3.0
+			
+			cull_hardware none
+			
+			vertex_program_ref VP/Base
+			{
+			}
+			fragment_program_ref FP/Base/Color/WithoutLight
+			{
+				param_named_auto	colour	custom	0
+			}
+		}
+	}
+}
+
+material measureTool/Curve
+{
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			
+			//depth_check off
+			//depth_write off
+			//depth_func always_pass
+			
+			vertex_program_ref VP/Base
+			{
+			}
+			
+			fragment_program_ref FP/Base/Color/WithoutLight
+			{
+				param_named_auto	colour	custom	0
+			}
+		}
+	}
+}
+
+material measureTool/Point
+{
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			
+			//depth_check off
+			//depth_write off
+			//depth_func always_pass
+			
+			vertex_program_ref VP/Base
+			{
+			}
+			
+			fragment_program_ref FP/Base/Color/WithoutLight
+			{
+				param_named_auto	colour	custom	0
+			}
+		}
+	}
+}
+
+material measureTool/Manipulator/Arrow
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			
+			//depth_check off
+			//depth_write off
+			//depth_func always_pass
+			
+			texture_unit
+			{
+				texture arrow.png 2d 0
+				filtering anisotropic anisotropic anisotropic
+			}
+			
+			vertex_program_ref VP/Base
+			{
+			}
+			
+			fragment_program_ref FP/Base/Tex
+			{
+				param_named diffuseTex int 0
+			}
+		}
+	}
+}
+
+material measureTool/Manipulator/Torus
+{
+	technique
+	{
+		pass
+		{			
+			cull_hardware none
+			
+			//depth_check off
+			//depth_write off
+			//depth_func always_pass
+			
+			vertex_program_ref VP/Base
+			{
+			}
+			
+			fragment_program_ref FP/Base/Color/WithoutLight
+			{
+				param_named_auto	colour	custom	0
+			}
+		}
+	}
+}
+
+material measureTool/Manipulator/CircleFace
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			
+			cull_hardware none
+			
+			//depth_check off
+			//depth_write off
+			//depth_func always_pass
+			
+			vertex_program_ref VP/Base
+			{
+			}
+			
+			fragment_program_ref FP/Base/Color/WithoutLight
+			{
+				param_named_auto	colour	custom	0
+			}
+		}
+	}
+}
+
+material measureTool/AuxFace
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			
+			cull_hardware none
+			
+			//depth_check off
+			//depth_write off
+			//depth_func always_pass
+			
+			vertex_program_ref VP/Base
+			{
+			}
+			
+			fragment_program_ref FP/Base/Color/WithoutLight
+			{
+				param_named_auto	colour	custom	0
+			}
+		}
+	}
+}
+
+material measureTool/AuxCurve
+{
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			
+			//depth_check off
+			//depth_write off
+			//depth_func always_pass
+			
+			vertex_program_ref VP/Base
+			{
+			}
+			
+			fragment_program_ref FP/Base/Color/WithoutLight
+			{
+				param_named_auto	colour	custom	0
+			}
+		}
+	}
+}

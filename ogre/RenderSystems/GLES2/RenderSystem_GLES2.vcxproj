@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{140EB509-7160-32F2-8420-07DA2B4EEBA5}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>RenderSystem_GLES2</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectName)</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.dll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectName)</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.dll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../OgreMain\include;$(ProjectDir)../../OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\EGL\WIN32;$(ProjectDir)/include\EGL\WIN32;$(ProjectDir)/include;$(ProjectDir)/include\EGL;$(ProjectDir)/include\EAGL;$(ProjectDir)/src\GLSLES\include;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4786;4503;4251;4275;4290;4661;4996;4127;4100</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;DEBUG;OGRE_GLES2PLUGIN_EXPORTS;INCLUDE_RTSHADER_SYSTEM;RenderSystem_GLES2_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;DEBUG;OGRE_GLES2PLUGIN_EXPORTS;INCLUDE_RTSHADER_SYSTEM;CMAKE_INTDIR=\"Debug\";RenderSystem_GLES2_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\EGL\WIN32;$(ProjectDir)/include\EGL\WIN32;$(ProjectDir)/include;$(ProjectDir)/include\EGL;$(ProjectDir)/include\EAGL;$(ProjectDir)/src\GLSLES\include;D:\Code\ogre\Components\RTShaderSystem\include;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\EGL\WIN32;$(ProjectDir)/include\EGL\WIN32;$(ProjectDir)/include;$(ProjectDir)/include\EGL;$(ProjectDir)/include\EAGL;$(ProjectDir)/src\GLSLES\include;D:\Code\ogre\Components\RTShaderSystem\include;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Windows\x86_32\Lib\libGLESv2.lib;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Windows\x86_32\Lib\libEGL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)$(TargetName)$(PlatformToolsetVersion).pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalOptions> /Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../OgreMain\include;$(ProjectDir)../../OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\EGL\WIN32;$(ProjectDir)/include\EGL\WIN32;$(ProjectDir)/include;$(ProjectDir)/include\EGL;$(ProjectDir)/include\EAGL;$(ProjectDir)/src\GLSLES\include;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4786;4503;4251;4275;4290;4661;4996;4127;4100</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;DEBUG;OGRE_GLES2PLUGIN_EXPORTS;INCLUDE_RTSHADER_SYSTEM;RenderSystem_GLES2_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;DEBUG;OGRE_GLES2PLUGIN_EXPORTS;INCLUDE_RTSHADER_SYSTEM;CMAKE_INTDIR=\"Debug\";RenderSystem_GLES2_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\EGL\WIN32;$(ProjectDir)/include\EGL\WIN32;$(ProjectDir)/include;$(ProjectDir)/include\EGL;$(ProjectDir)/include\EAGL;$(ProjectDir)/src\GLSLES\include;D:\Code\ogre\Components\RTShaderSystem\include;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\EGL\WIN32;$(ProjectDir)/include\EGL\WIN32;$(ProjectDir)/include;$(ProjectDir)/include\EGL;$(ProjectDir)/include\EAGL;$(ProjectDir)/src\GLSLES\include;D:\Code\ogre\Components\RTShaderSystem\include;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Windows\x86_32\Lib\libGLESv2.lib;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Windows\x86_32\Lib\libEGL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)$(TargetName)$(PlatformToolsetVersion).pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../OgreMain\include;$(ProjectDir)../../OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\EGL\WIN32;$(ProjectDir)/include\EGL\WIN32;$(ProjectDir)/include;$(ProjectDir)/include\EGL;$(ProjectDir)/include\EAGL;$(ProjectDir)/src\GLSLES\include;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4786;4503;4251;4275;4290;4661;4996;4127;4100</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OGRE_GLES2PLUGIN_EXPORTS;INCLUDE_RTSHADER_SYSTEM;RenderSystem_GLES2_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OGRE_GLES2PLUGIN_EXPORTS;INCLUDE_RTSHADER_SYSTEM;CMAKE_INTDIR=\"Release\";RenderSystem_GLES2_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\EGL\WIN32;$(ProjectDir)/include\EGL\WIN32;$(ProjectDir)/include;$(ProjectDir)/include\EGL;$(ProjectDir)/include\EAGL;$(ProjectDir)/src\GLSLES\include;D:\Code\ogre\Components\RTShaderSystem\include;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\EGL\WIN32;$(ProjectDir)/include\EGL\WIN32;$(ProjectDir)/include;$(ProjectDir)/include\EGL;$(ProjectDir)/include\EAGL;$(ProjectDir)/src\GLSLES\include;D:\Code\ogre\Components\RTShaderSystem\include;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Windows\x86_32\Lib\libGLESv2.lib;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Windows\x86_32\Lib\libEGL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)$(TargetName)$(PlatformToolsetVersion).pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalOptions> /Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../OgreMain\include;$(ProjectDir)../../OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\EGL\WIN32;$(ProjectDir)/include\EGL\WIN32;$(ProjectDir)/include;$(ProjectDir)/include\EGL;$(ProjectDir)/include\EAGL;$(ProjectDir)/src\GLSLES\include;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4786;4503;4251;4275;4290;4661;4996;4127;4100</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OGRE_GLES2PLUGIN_EXPORTS;INCLUDE_RTSHADER_SYSTEM;RenderSystem_GLES2_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OGRE_GLES2PLUGIN_EXPORTS;INCLUDE_RTSHADER_SYSTEM;CMAKE_INTDIR=\"Release\";RenderSystem_GLES2_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\EGL\WIN32;$(ProjectDir)/include\EGL\WIN32;$(ProjectDir)/include;$(ProjectDir)/include\EGL;$(ProjectDir)/include\EAGL;$(ProjectDir)/src\GLSLES\include;D:\Code\ogre\Components\RTShaderSystem\include;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\EGL\WIN32;$(ProjectDir)/include\EGL\WIN32;$(ProjectDir)/include;$(ProjectDir)/include\EGL;$(ProjectDir)/include\EAGL;$(ProjectDir)/src\GLSLES\include;D:\Code\ogre\Components\RTShaderSystem\include;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Windows\x86_32\Lib\libGLESv2.lib;C:\Imagination\PowerVR_Graphics\PowerVR_SDK\SDK_2016_R2\Builds\Windows\x86_32\Lib\libEGL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)$(TargetName)$(PlatformToolsetVersion).pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2Context.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2DefaultHardwareBufferManager.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2DepthBuffer.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2FBOMultiRenderTarget.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2FBORenderTexture.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2FrameBufferObject.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2GpuProgram.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2GpuProgramManager.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2HardwareBufferManager.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2HardwareIndexBuffer.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2HardwareOcclusionQuery.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2HardwarePixelBuffer.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2HardwareUniformBuffer.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2HardwareVertexBuffer.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2InternalShaders.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2ManagedResource.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2ManagedResourceManager.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2PixelFormat.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2Plugin.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2Prerequisites.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2RenderSystem.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2RenderTexture.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2RenderToVertexBuffer.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2StateCacheManager.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2Support.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2Texture.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2TextureManager.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2UniformCache.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLES2VertexDeclaration.h" />
+    <ClInclude Include="$(ProjectDir)/src\StateCacheManager\OgreGLES2NullStateCacheManagerImp.h" />
+    <ClInclude Include="$(ProjectDir)/src\StateCacheManager\OgreGLES2NullUniformCacheImp.h" />
+    <ClInclude Include="$(ProjectDir)/include\GLES2\gl2.h" />
+    <ClInclude Include="$(ProjectDir)/include\GLES2\gl2ext.h" />
+    <ClInclude Include="$(ProjectDir)/include\GLES2\gl2platform.h" />
+    <ClInclude Include="$(ProjectDir)/include\GLES2\gles2w.h" />
+    <ClInclude Include="$(ProjectDir)/include\KHR\khrplatform.h" />
+    <ClInclude Include="$(ProjectDir)/include\EGL\WIN32\OgreGLES2Util.h" />
+    <ClInclude Include="$(ProjectDir)/include\EGL\WIN32\OgreWin32EGLContext.h" />
+    <ClInclude Include="$(ProjectDir)/include\EGL\WIN32\OgreWin32EGLRenderTexture.h" />
+    <ClInclude Include="$(ProjectDir)/include\EGL\WIN32\OgreWin32EGLSupport.h" />
+    <ClInclude Include="$(ProjectDir)/include\EGL\WIN32\OgreWin32EGLWindow.h" />
+    <ClInclude Include="$(ProjectDir)/include\EGL\OgreEGLContext.h" />
+    <ClInclude Include="$(ProjectDir)/include\EGL\OgreEGLRenderTexture.h" />
+    <ClInclude Include="$(ProjectDir)/include\EGL\OgreEGLSupport.h" />
+    <ClInclude Include="$(ProjectDir)/include\EGL\OgreEGLWindow.h" />
+    <ClInclude Include="$(ProjectDir)/include\EGL\OgreGLES2Util.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSLES\include\OgreGLSLESCgProgram.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSLES\include\OgreGLSLESCgProgramFactory.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSLES\include\OgreGLSLESExtSupport.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSLES\include\OgreGLSLESGpuProgram.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSLES\include\OgreGLSLESLinkProgram.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSLES\include\OgreGLSLESLinkProgramManager.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSLES\include\OgreGLSLESPreprocessor.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSLES\include\OgreGLSLESProgram.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSLES\include\OgreGLSLESProgramCommon.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSLES\include\OgreGLSLESProgramFactory.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSLES\include\OgreGLSLESProgramManagerCommon.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSLES\include\OgreGLSLESProgramPipeline.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSLES\include\OgreGLSLESProgramPipelineManager.h" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2Context.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2DefaultHardwareBufferManager.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2DepthBuffer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2EngineDll.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2FBOMultiRenderTarget.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2FBORenderTexture.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2FrameBufferObject.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2GpuProgram.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2GpuProgramManager.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2HardwareBufferManager.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2HardwareIndexBuffer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2HardwareOcclusionQuery.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2HardwarePixelBuffer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2HardwareUniformBuffer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2HardwareVertexBuffer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2ManagedResource.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2ManagedResourceManager.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2PixelFormat.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2Plugin.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2RenderSystem.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2RenderTexture.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2RenderToVertexBuffer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2StateCacheManager.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2Support.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2Texture.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2TextureManager.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2UniformCache.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLES2VertexDeclaration.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\gles2w.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\StateCacheManager\OgreGLES2NullStateCacheManagerImp.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\StateCacheManager\OgreGLES2NullUniformCacheImp.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\EGL\WIN32\OgreWin32EGLContext.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\EGL\WIN32\OgreWin32EGLRenderTexture.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\EGL\WIN32\OgreWin32EGLSupport.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\EGL\WIN32\OgreWin32EGLWindow.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\EGL\OgreEGLContext.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\EGL\OgreEGLRenderTexture.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\EGL\OgreEGLSupport.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\EGL\OgreEGLWindow.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSLES\src\OgreGLSLESExtSupport.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSLES\src\OgreGLSLESGpuProgram.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSLES\src\OgreGLSLESLinkProgram.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSLES\src\OgreGLSLESLinkProgramManager.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSLES\src\OgreGLSLESPreprocessor.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSLES\src\OgreGLSLESProgram.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSLES\src\OgreGLSLESProgramCommon.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSLES\src\OgreGLSLESProgramFactory.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSLES\src\OgreGLSLESProgramManagerCommon.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSLES\src\OgreGLSLESProgramPipeline.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSLES\src\OgreGLSLESProgramPipelineManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\OgreMain\OgreMain.vcxproj">
+      <Project>{670308f0-c65f-3928-8dad-74733ac0e8a8}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

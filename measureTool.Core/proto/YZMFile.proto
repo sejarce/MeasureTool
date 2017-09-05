@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package yzm;
+
+import "YZMMeasureDocument.proto";
+import "YZMPointCloud.proto";
+
+message	YZMFile
+{
+	MeasureDocument	document = 1;
+	PointCloud		point_cloud = 2;
+}

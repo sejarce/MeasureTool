@@ -1,0 +1,297 @@
+vertex_program VP/Base/GLSL glsl
+{
+	source BaseVP.glsles
+	profiles glsl
+	
+	default_params
+    {
+		param_named_auto textureMatrix texture_matrix 0
+        param_named_auto worldViewProjMatrix worldviewproj_matrix
+		param_named_auto worldMatrix world_matrix
+    }
+}
+
+vertex_program VP/Base unified
+{
+	delegate VP/Base/GLSL
+}
+
+vertex_program VP/Base/GLSL/FlipV glsl
+{
+	source BaseVP.glsles
+	profiles glsl
+	
+	preprocessor_defines FLIP_V;
+	
+	default_params
+    {
+		param_named_auto textureMatrix texture_matrix 0
+        param_named_auto worldViewProjMatrix worldviewproj_matrix
+		param_named_auto worldMatrix world_matrix
+    }
+}
+
+vertex_program VP/Base/FlipV unified
+{
+	delegate VP/Base/GLSL/FlipV
+}
+
+
+vertex_program VP/StdQuad/GLSL glsl
+{
+	source StdQuadVP.glsl
+	profiles glsl
+}
+
+vertex_program VP/StdQuad unified
+{
+	delegate VP/StdQuad/GLSL
+}
+
+vertex_program VP/StdQuad/GLSL/FlipV glsl
+{
+	source StdQuadVP.glsl
+	profiles glsl
+	
+	preprocessor_defines FLIP_V;
+}
+
+vertex_program VP/StdQuad/FlipV unified
+{
+	delegate VP/StdQuad/GLSL/FlipV
+}
+
+
+
+fragment_program FP/ShowUV/GLSL glsl
+{
+	source ShowUV.glsl
+	profiles glsl
+}
+
+fragment_program FP/ShowUV unified
+{
+	delegate FP/ShowUV/GLSL
+}
+
+
+fragment_program FP/StdQuad/GLSL glsl
+{
+	source StdQuadFP.glsl
+	profiles glsl
+	
+	default_params
+	{
+		param_named diffuseTex int 0
+	}
+}
+
+fragment_program FP/StdQuad unified
+{
+	delegate FP/StdQuad/GLSL
+}
+
+
+fragment_program FP/StdQuad_TestUV/GLSL glsl
+{
+	source StdQuadFP_TestUV.glsl
+	profiles glsl
+}
+
+fragment_program FP/StdQuad_TestUV unified
+{
+	delegate FP/StdQuad_TestUV/GLSL
+}
+
+
+
+
+
+fragment_program FP/Base/Color/GLSL glsl
+{
+	source BaseColorFP.glsles
+	profiles glsl
+	
+	default_params
+	{
+		param_named_auto colour surface_diffuse_colour
+		param_named_auto worldMatrix world_matrix
+		param_named_auto lightPosition light_position_object_space 0
+		param_named_auto lightDiffuse light_diffuse_colour 0
+	}
+}
+
+fragment_program FP/Base/Color unified
+{
+	delegate FP/Base/Color/GLSL
+}
+
+
+fragment_program FP/Base/Color/WithoutLight/GLSL glsl
+{
+	source BaseColorFP.glsles
+	profiles glsl
+	
+	preprocessor_defines WITHOUT_LIGHT;
+	
+	default_params
+	{
+		param_named_auto colour surface_diffuse_colour
+		param_named_auto worldMatrix world_matrix
+		param_named_auto lightPosition light_position_object_space 0
+		param_named_auto lightDiffuse light_diffuse_colour 0
+	}
+}
+
+fragment_program FP/Base/Color/WithoutLight unified
+{
+	delegate FP/Base/Color/WithoutLight/GLSL
+}
+
+
+
+fragment_program FP/Base/VertexColor/GLSL glsl
+{
+	source BaseVertexColorFP.glsl
+	profiles glsl
+	
+	default_params
+	{
+		param_named_auto worldMatrix world_matrix
+		param_named_auto lightPosition light_position_object_space 0
+		param_named_auto lightDiffuse light_diffuse_colour 0
+	}
+}
+
+fragment_program FP/Base/VertexColor unified
+{
+	delegate FP/Base/VertexColor/GLSL
+}
+
+
+
+
+
+
+fragment_program FP/Base/Tex/GLSL glsl
+{
+	source BaseTexFP.glsles
+	profiles glsl
+}
+
+fragment_program FP/Base/Tex unified
+{
+	delegate FP/Base/Tex/GLSL
+}
+
+
+
+
+
+fragment_program FP/Base/Light/GLSL glsl
+{
+	source LightTexFP.glsles
+	profiles glsl
+	default_params
+	{
+		param_named_auto worldMatrix world_matrix
+		param_named_auto lightPosition light_position_object_space 0
+		param_named_auto lightDiffuse light_diffuse_colour 0
+	}
+}
+
+fragment_program FP/Base/Light unified
+{
+	delegate FP/Base/Light/GLSL
+}
+
+
+fragment_program FP/Edge/GLSL glsl
+{
+	source EdgeFP.glsl
+	profiles glsl
+	
+	default_params
+	{
+		param_named diffuseTex int 0
+		param_named_auto inv_width inverse_viewport_width 
+		param_named_auto inv_height inverse_viewport_height
+	}
+}
+
+fragment_program FP/Edge unified
+{
+	delegate FP/Edge/GLSL
+}
+
+fragment_program FP/DownSampler/GLSL glsl
+{
+	source DownSamplerFP.glsl
+	profiles glsl
+	
+	default_params
+	{
+		param_named diffuseTex int 0
+		param_named_auto inv_width inverse_viewport_width 
+		param_named_auto inv_height inverse_viewport_height
+	}
+}
+
+fragment_program FP/DownSampler unified
+{
+	delegate FP/DownSampler/GLSL
+}
+
+fragment_program FP/GaussBlurH/GLSL glsl
+{
+	source GaussBlurHFP.glsl
+	profiles glsl
+	
+	default_params
+	{
+		param_named diffuseTex int 0
+		param_named_auto inv_texture_size inverse_texture_size 0
+	}
+}
+
+fragment_program FP/GaussBlurH unified
+{
+	delegate FP/GaussBlurH/GLSL
+}
+
+fragment_program FP/GaussBlurV/GLSL glsl
+{
+	source GaussBlurVFP.glsl
+	profiles glsl
+	
+	default_params
+	{
+		param_named diffuseTex int 0
+		param_named_auto inv_texture_size inverse_texture_size 0
+	}
+}
+
+fragment_program FP/GaussBlurV unified
+{
+	delegate FP/GaussBlurV/GLSL
+}
+
+fragment_program FP/ToneMapping/GLSL glsl
+{
+	source ToneMappingFP.glsl
+	profiles glsl
+	
+	default_params
+	{
+		param_named diffuseTex int 0
+		param_named baseMap int 1
+		param_named blurMap int 2
+		param_named_auto inv_width inverse_viewport_width 
+		param_named_auto inv_height inverse_viewport_height
+	}
+}
+
+fragment_program FP/ToneMapping unified
+{
+	delegate FP/ToneMapping/GLSL
+}

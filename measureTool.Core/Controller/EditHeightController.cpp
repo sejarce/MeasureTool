@@ -1,0 +1,396 @@
+#include "EditHeightController.h"
+
+#include "Render/Camera/MayaCamera.h"
+#include "Render/VisibilityFlag.h"
+#include "Render/QueryUtil.h"
+
+#include "Render/Extension/Line3D.h"
+#include "Render/Extension/Point3D.h"
+
+#include "ROM/HeightROM.h"
+#include "ROM/IROM.h"
+#include "DOM/IDOM.h"
+
+#include "FrameEvent/ToolBarEvent.h"
+#include "FrameEvent/ControlEvent.h"
+
+#include "Util/MathUtil.h"
+
+#include "Ogre.h"
+#include "OgreMeshSerializer.h"	 
+
+#include "Render/OgreEnv.h"
+
+#include <boost/timer/timer.hpp>
+
+
+class 	EditHeightController::Imp
+{
+public:
+	enum EState
+	{
+		ES_Init,
+		ES_Create,
+		ES_Edit,
+		ES_Drag,
+		ES_PreExit,
+		ES_Count
+	};
+public:
+	Ogre::RenderWindow*			RT_{};
+	MayaCameraSPtr 				CameraListener_{};
+	Ogre::SceneManager*			Smgr_{};
+
+	Ogre::SceneNode*			HumanNode_{};
+
+	PCLOctreeSPtr				Octree_;
+
+	EState						State_ = ES_Init;
+
+	std::shared_ptr<HeightROM>	Rom_;
+
+	Ogre::SceneNode*			Node_ = NULL;
+	Point3D*					StartPoint_ = NULL;
+	Point3D*					EndPoint_ = NULL;
+	Line3D*						StartLine_ = NULL;
+	Line3D*						EndLine_ = NULL;
+
+	Ogre::Vector3	SavedStartPoint_{};
+	Ogre::Vector3	SavedEndPoint_{};
+
+public:
+	~Imp()
+	{}
+
+	bool QueryPicking(Ogre::Vector3& pt)
+	{
+		boost::timer::cpu_timer ct;
+
+		auto cursorRay = QueryUtil::GetRayFromCamera(CameraListener_->GetCamera(), SysEventRecorder::CachedMouseState(), RT_);
+
+		Ogre::Vector3 cursorAdjOrigin, cursorAdjDir, cursorAdjEndPnt;
+		{
+			auto transform = HumanNode_->_getFullTransformUpdated();
+			auto transformInv = transform.inverse();
+			auto rot = transformInv.extractQuaternion();
+
+			cursorAdjOrigin = transformInv * cursorRay.getOrigin();
+			cursorAdjDir = rot * cursorRay.getDirection();
+
+			cursorAdjEndPnt = cursorAdjOrigin + cursorAdjDir;
+		}
+
+		decltype( cursorRay ) adjCursorRay(cursorAdjOrigin, cursorAdjDir);
+
+		auto queryPnt = Octree_->RayQuery(adjCursorRay, 5e-3);
+
+		if (std::get<0>(queryPnt))
+		{
+			pt = std::get<2>(queryPnt);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	void createLine(const Ogre::Vector3& start, const Ogre::Vector3& end)
+	{
+		//获取相机位置
+		//Ogre::Vector3 pt_s(0, start.y, 0);
+		//Ogre::Vector3 pt_e(0, end.y, 0);
+		Ogre::Vector3 pt_s(start);
+		Ogre::Vector3 pt_e(start.x, end.y, start.z);
+		Rom_->SetVisible(true);
+		//Rom_->GetLine()->SetColor(Ogre::ColourValue::Blue);
+		//Rom_->GetLine()->SetLineWidth(0.004f);
+		Rom_->SetPoint(start, end);
+
+		StartLine_->setVisible(true);
+		StartLine_->SetColor(Ogre::ColourValue::White);
+		StartLine_->SetLineWidth(0.002f);
+		StartLine_->SetPoint(start, pt_s);
+
+		EndLine_->setVisible(true);
+		EndLine_->SetColor(Ogre::ColourValue::White);
+		EndLine_->SetLineWidth(0.002f);
+		EndLine_->SetPoint(pt_e, end);
+	}
+
+	float distanceRay_Point(const Ogre::Vector3& pt)
+	{
+		boost::timer::cpu_timer ct;
+		auto cursorRay = QueryUtil::GetRayFromCamera(CameraListener_->GetCamera(), SysEventRecorder::CachedMouseState(), RT_);
+		Ogre::Vector3 cursorAdjOrigin, cursorAdjDir, cursorAdjEndPnt;
+		{
+			auto transform = HumanNode_->_getFullTransformUpdated();
+			auto transformInv = transform.inverse();
+			auto rot = transformInv.extractQuaternion();
+
+			cursorAdjOrigin = transformInv * cursorRay.getOrigin();
+			cursorAdjDir = rot * cursorRay.getDirection();
+
+			cursorAdjEndPnt = cursorAdjOrigin + cursorAdjDir;
+		}
+
+		decltype( cursorRay ) adjCursorRay(cursorAdjOrigin, cursorAdjDir);
+
+		auto pc = MathUtil::ProjectPointOnLine(pt, adjCursorRay.getOrigin(), adjCursorRay.getDirection());
+		return ( pc - pt ).length();
+	}
+};
+
+EditHeightController::EditHeightController(Ogre::RenderWindow* rt
+												 , const MayaCameraSPtr& camera
+												 , Ogre::SceneNode* node
+												 , PCLOctreeSPtr octree)
+												 : ImpUPtr_(new Imp)
+{
+	auto& imp_ = *ImpUPtr_;
+
+	imp_.RT_ = rt;
+	imp_.CameraListener_ = camera;
+	imp_.Smgr_ = camera->GetCamera()->getSceneManager();
+	imp_.HumanNode_ = node;
+	imp_.Octree_ = octree;
+
+	imp_.StartPoint_ = Point3DFactory::CreateInstance(imp_.Smgr_);
+	imp_.EndPoint_ = Point3DFactory::CreateInstance(imp_.Smgr_);
+	imp_.StartLine_ = Line3DFactory::CreateInstance(imp_.Smgr_);
+	imp_.EndLine_ = Line3DFactory::CreateInstance(imp_.Smgr_);
+
+	imp_.Node_ = imp_.HumanNode_->createChildSceneNode();
+	imp_.Node_->attachObject(imp_.StartPoint_);
+	imp_.Node_->attachObject(imp_.EndPoint_);
+	imp_.Node_->attachObject(imp_.StartLine_);
+	imp_.Node_->attachObject(imp_.EndLine_);
+
+	imp_.StartPoint_->setVisible(false);
+	imp_.EndPoint_->setVisible(false);
+	imp_.StartLine_->setVisible(false);
+	imp_.EndLine_->setVisible(false);
+}
+
+EditHeightController::~EditHeightController()
+{
+	auto& imp_ = *ImpUPtr_;
+	imp_.Rom_.reset();
+
+	imp_.StartPoint_->Destory();
+	imp_.EndPoint_->Destory();
+	imp_.StartLine_->Destory();
+	imp_.EndLine_->Destory();
+
+	imp_.Node_->removeAllChildren();
+	imp_.Node_->getParentSceneNode()->removeChild(imp_.Node_);
+
+	Unload();
+}
+
+void EditHeightController::_FrameQueue(const Ogre::FrameEvent& fevt)
+{
+	auto& imp_ = *ImpUPtr_;
+
+	auto& evtRecorder = GetSysEventRecorder();
+
+	switch ( imp_.State_ )
+	{
+	case Imp::ES_Init:
+	{
+		auto fe = PopFrameEvent<SFE_EditItem>();
+		imp_.Rom_ = std::static_pointer_cast<HeightROM>( IROM::GetFromDOM(fe->DOM.lock()) );
+		switch ( fe->Status )
+		{
+		case SFE_EditItem::ES_CreateMode:
+		{
+			imp_.State_ = Imp::ES_Create;
+		}
+		break;
+		case SFE_EditItem::ES_EditMode:
+		{
+			imp_.State_ = Imp::ES_Edit;
+
+			imp_.SavedStartPoint_ = imp_.Rom_->GetStartPoint();
+			imp_.SavedEndPoint_ = imp_.Rom_->GetEndPoint();
+
+			imp_.StartPoint_->setVisible(true);
+			imp_.StartPoint_->SetPoint(imp_.Rom_->GetStartPoint());
+			imp_.EndPoint_->setVisible(true);
+			imp_.EndPoint_->SetPoint(imp_.Rom_->GetEndPoint());
+			imp_.createLine(imp_.Rom_->GetStartPoint(), imp_.Rom_->GetEndPoint());
+			imp_.Rom_->SetDisplayMode(IROM::EDM_Edit);
+		}
+		break;
+		default:
+		imp_.State_ = Imp::ES_Count;
+		break;
+		}
+	}
+	break;
+	case Imp::ES_Create:
+	{
+		if ( !imp_.StartPoint_->getVisible() )
+		{
+			if ( evtRecorder.HasMousePressed(OIS::MB_Left) )
+			{
+				Ogre::Vector3 pt;
+				if ( imp_.QueryPicking(pt) )
+				{
+					imp_.StartPoint_->setVisible(true);
+					imp_.StartPoint_->SetPoint(pt);
+				}
+			}
+		}
+		else
+		{
+			if ( evtRecorder.HasMousePressed(OIS::MB_Left) )
+			{
+				Ogre::Vector3 pt;
+				if ( imp_.QueryPicking(pt) )
+				{
+					//绘制一个点
+					imp_.EndPoint_->setVisible(true);
+					imp_.EndPoint_->SetPoint(pt);
+
+					//绘制一根线
+					imp_.createLine(imp_.StartPoint_->GetPoint(), imp_.EndPoint_->GetPoint());
+					auto dirty = imp_.Rom_->GetDOM()->isDirty();
+					imp_.Rom_->GetDOM()->Dirty();
+					imp_.Rom_->GetDOM()->UpdateEditTime();
+					if (!dirty)
+					{
+						//通知ui
+						SFE_DataDirtyChange sfe;
+						sfe.dirty = true;
+						PostFrameEventToUI(sfe.ConvertToFrameEvent());
+					}
+
+					imp_.State_ = Imp::ES_Edit;
+					imp_.Rom_->SetDisplayMode(IROM::EDM_Edit);
+				}
+			}
+			else if ( evtRecorder.HasMouseMoved() )
+			{
+				Ogre::Vector3 pt;
+				if ( imp_.QueryPicking(pt) )
+				{
+					//绘制一个点	
+					imp_.EndPoint_->setVisible(true);
+					imp_.EndPoint_->SetPoint(pt);
+
+					//绘制一根线
+					imp_.createLine(imp_.StartPoint_->GetPoint(), imp_.EndPoint_->GetPoint());
+				}
+			}
+		}
+	}
+	break;
+	case Imp::ES_Edit:
+	{
+		if ( evtRecorder.HasMousePressed(OIS::MB_Left) )
+		{
+			imp_.StartPoint_->SetRadius(0.01);
+			imp_.EndPoint_->SetRadius(0.01);
+			imp_.StartPoint_->SetColor(Ogre::ColourValue::Red);
+			imp_.EndPoint_->SetColor(Ogre::ColourValue::Red);
+
+			auto d = imp_.distanceRay_Point(imp_.StartPoint_->GetPoint());
+			if ( d < 0.005 )
+			{
+				//设置选中第一个点
+				imp_.StartPoint_->SetColor(Ogre::ColourValue::Green);
+				imp_.StartPoint_->SetRadius(0.02);
+				imp_.State_ = Imp::ES_Drag;
+			}
+			else
+			{
+				d = imp_.distanceRay_Point(imp_.EndPoint_->GetPoint());
+				if ( d < 0.005 )
+				{
+					//设置选中第二个点
+					imp_.EndPoint_->SetColor(Ogre::ColourValue::Green);
+					imp_.EndPoint_->SetRadius(0.02);
+					imp_.State_ = Imp::ES_Drag;
+				}
+			}
+		}
+		else if ( evtRecorder.HasMouseMoved() )
+		{
+			imp_.StartPoint_->SetRadius(0.01);
+			imp_.EndPoint_->SetRadius(0.01);
+			imp_.StartPoint_->SetColor(Ogre::ColourValue::Red);
+			imp_.EndPoint_->SetColor(Ogre::ColourValue::Red);
+			auto d = imp_.distanceRay_Point(imp_.StartPoint_->GetPoint());
+			if ( d < 0.005 )
+			{
+				//设置选中第一个点
+				imp_.StartPoint_->SetColor(Ogre::ColourValue::Green);
+				imp_.StartPoint_->SetRadius(0.02);
+			}
+			else
+			{
+				d = imp_.distanceRay_Point(imp_.EndPoint_->GetPoint());
+				if ( d < 0.005 )
+				{
+					//设置选中第二个点
+					imp_.EndPoint_->SetColor(Ogre::ColourValue::Green);
+					imp_.EndPoint_->SetRadius(0.02);
+				}
+			}
+		}
+	}
+	break;
+	case Imp::ES_Drag:
+	{
+		if ( evtRecorder.HasMouseReleased(OIS::MB_Left) )
+		{
+			imp_.StartPoint_->SetColor(Ogre::ColourValue::Red);
+			imp_.StartPoint_->SetRadius(0.01);
+			imp_.EndPoint_->SetColor(Ogre::ColourValue::Red);
+			imp_.EndPoint_->SetRadius(0.01);
+			imp_.State_ = Imp::ES_Edit;
+		}
+		else if ( evtRecorder.HasMouseMoved() )
+		{
+			//第一个点
+			if ( imp_.StartPoint_->GetColor() == Ogre::ColourValue::Green )
+			{
+				//设置当前点新位置
+				Ogre::Vector3 pt;
+				if ( imp_.QueryPicking(pt) )
+				{
+					imp_.StartPoint_->setVisible(true);
+					imp_.StartPoint_->SetPoint(pt);
+				}
+			}
+			//第二个点
+			if ( imp_.EndPoint_->GetColor() == Ogre::ColourValue::Green )
+			{
+				//设置当前点新位置
+				Ogre::Vector3 pt;
+				if ( imp_.QueryPicking(pt) )
+				{
+					imp_.EndPoint_->setVisible(true);
+					imp_.EndPoint_->SetPoint(pt);
+				}
+			}
+			//绘制一根线
+			imp_.createLine(imp_.StartPoint_->GetPoint(), imp_.EndPoint_->GetPoint());
+			auto dirty = imp_.Rom_->GetDOM()->isDirty();
+			imp_.Rom_->GetDOM()->Dirty();
+			imp_.Rom_->GetDOM()->UpdateEditTime();
+			if (!dirty)
+			{
+				//通知ui
+				SFE_DataDirtyChange sfe;
+				sfe.dirty = true;
+				PostFrameEventToUI(sfe.ConvertToFrameEvent());
+			}
+		}
+	}
+	break;
+	default:
+	break;
+	}
+}

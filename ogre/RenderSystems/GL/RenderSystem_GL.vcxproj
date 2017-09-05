@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{CCA67BC2-7FE1-3389-A360-C72A5CBF6578}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>RenderSystem_GL</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectName)</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.dll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectName)</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.dll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(ProjectDir)/include;$(ProjectDir)../../OgreMain\include;$(ProjectDir)../../OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\nvparse\winheaders;$(ProjectDir)/include\Win32;$(ProjectDir)/src\Win32;$(ProjectDir)/src\GLSL\include;$(ProjectDir)/src\atifs\include;$(ProjectDir)/src\nvparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4786;4503;4251;4275;4290;4661;4996;4127;4100</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;DEBUG;OGRE_GLPLUGIN_EXPORTS;RenderSystem_GL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;DEBUG;OGRE_GLPLUGIN_EXPORTS;CMAKE_INTDIR=\"Debug\";RenderSystem_GL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)/include;D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\nvparse\winheaders;$(ProjectDir)/include\Win32;$(ProjectDir)/src\Win32;$(ProjectDir)/src\GLSL\include;$(ProjectDir)/src\atifs\include;$(ProjectDir)/src\nvparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(ProjectDir)/include;D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\nvparse\winheaders;$(ProjectDir)/include\Win32;$(ProjectDir)/src\Win32;$(ProjectDir)/src\GLSL\include;$(ProjectDir)/src\atifs\include;$(ProjectDir)/src\nvparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)$(TargetName)$(PlatformToolsetVersion).pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalOptions> /Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(ProjectDir)/include;$(ProjectDir)../../OgreMain\include;$(ProjectDir)../../OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\nvparse\winheaders;$(ProjectDir)/include\Win32;$(ProjectDir)/src\Win32;$(ProjectDir)/src\GLSL\include;$(ProjectDir)/src\atifs\include;$(ProjectDir)/src\nvparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4786;4503;4251;4275;4290;4661;4996;4127;4100</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;DEBUG;OGRE_GLPLUGIN_EXPORTS;RenderSystem_GL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;DEBUG;OGRE_GLPLUGIN_EXPORTS;CMAKE_INTDIR=\"Debug\";RenderSystem_GL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)/include;D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\nvparse\winheaders;$(ProjectDir)/include\Win32;$(ProjectDir)/src\Win32;$(ProjectDir)/src\GLSL\include;$(ProjectDir)/src\atifs\include;$(ProjectDir)/src\nvparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(ProjectDir)/include;D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\nvparse\winheaders;$(ProjectDir)/include\Win32;$(ProjectDir)/src\Win32;$(ProjectDir)/src\GLSL\include;$(ProjectDir)/src\atifs\include;$(ProjectDir)/src\nvparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)$(TargetName)$(PlatformToolsetVersion).pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(ProjectDir)/include;$(ProjectDir)../../OgreMain\include;$(ProjectDir)../../OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\nvparse\winheaders;$(ProjectDir)/include\Win32;$(ProjectDir)/src\Win32;$(ProjectDir)/src\GLSL\include;$(ProjectDir)/src\atifs\include;$(ProjectDir)/src\nvparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4786;4503;4251;4275;4290;4661;4996;4127;4100</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OGRE_GLPLUGIN_EXPORTS;RenderSystem_GL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OGRE_GLPLUGIN_EXPORTS;CMAKE_INTDIR=\"Release\";RenderSystem_GL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)/include;D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\nvparse\winheaders;$(ProjectDir)/include\Win32;$(ProjectDir)/src\Win32;$(ProjectDir)/src\GLSL\include;$(ProjectDir)/src\atifs\include;$(ProjectDir)/src\nvparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(ProjectDir)/include;D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\nvparse\winheaders;$(ProjectDir)/include\Win32;$(ProjectDir)/src\Win32;$(ProjectDir)/src\GLSL\include;$(ProjectDir)/src\atifs\include;$(ProjectDir)/src\nvparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)$(TargetName)$(PlatformToolsetVersion).pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalOptions> /Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(ProjectDir)/include;$(ProjectDir)../../OgreMain\include;$(ProjectDir)../../OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\nvparse\winheaders;$(ProjectDir)/include\Win32;$(ProjectDir)/src\Win32;$(ProjectDir)/src\GLSL\include;$(ProjectDir)/src\atifs\include;$(ProjectDir)/src\nvparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4786;4503;4251;4275;4290;4661;4996;4127;4100</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OGRE_GLPLUGIN_EXPORTS;RenderSystem_GL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;OGRE_GLPLUGIN_EXPORTS;CMAKE_INTDIR=\"Release\";RenderSystem_GL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)/include;D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\nvparse\winheaders;$(ProjectDir)/include\Win32;$(ProjectDir)/src\Win32;$(ProjectDir)/src\GLSL\include;$(ProjectDir)/src\atifs\include;$(ProjectDir)/src\nvparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(ProjectDir)/include;D:\Code\ogre\OgreMain\include;D:\Code\ogre\BuildVC12Test\include;D:\Code\ogredeps\BuildWin32\ogredeps\include;D:\Code\ogredeps\BuildWin32\ogredeps\include\OIS;D:\Code\ogredeps\BuildWin32\ogredeps\include\Cg;D:\Code\ogre;D:\Code\ogre\OgreMain\include\Threading;$(ProjectDir)/src\StateCacheManager;$(ProjectDir)/src\nvparse\winheaders;$(ProjectDir)/include\Win32;$(ProjectDir)/src\Win32;$(ProjectDir)/src\GLSL\include;$(ProjectDir)/src\atifs\include;$(ProjectDir)/src\nvparse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)$(TargetName)$(PlatformToolsetVersion).pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="$(ProjectDir)/include\OgreGLATIFSInit.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLContext.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLDefaultHardwareBufferManager.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLDepthBuffer.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLFBOMultiRenderTarget.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLFBORenderTexture.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLFrameBufferObject.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLGpuNvparseProgram.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLGpuProgram.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLGpuProgramManager.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLHardwareBufferManager.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLHardwareIndexBuffer.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLHardwareOcclusionQuery.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLHardwarePixelBuffer.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLHardwareVertexBuffer.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLPBRenderTexture.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLPBuffer.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLPixelFormat.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLPlugin.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLPrerequisites.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLRenderSystem.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLRenderTexture.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLRenderToVertexBuffer.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLStateCacheManager.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLSupport.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLTexture.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLTextureManager.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreGLUniformCache.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreSDLGLSupport.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreSDLPrerequisites.h" />
+    <ClInclude Include="$(ProjectDir)/include\OgreSDLWindow.h" />
+    <ClInclude Include="$(ProjectDir)/src\StateCacheManager\OgreGLNullStateCacheManagerImp.h" />
+    <ClInclude Include="$(ProjectDir)/src\StateCacheManager\OgreGLNullUniformCacheImp.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSL\include\OgreGLSLExtSupport.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSL\include\OgreGLSLGpuProgram.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSL\include\OgreGLSLLinkProgram.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSL\include\OgreGLSLLinkProgramManager.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSL\include\OgreGLSLPreprocessor.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSL\include\OgreGLSLProgram.h" />
+    <ClInclude Include="$(ProjectDir)/src\GLSL\include\OgreGLSLProgramFactory.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\_ps1.0_parser.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\_rc1.0_parser.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\_ts1.0_parser.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\_vs1.0_parser.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\macro.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\nvparse.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\nvparse_errors.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\nvparse_externs.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\ps1.0_program.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\rc1.0_combiners.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\rc1.0_final.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\rc1.0_general.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\rc1.0_register.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\ts1.0_inst.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\ts1.0_inst_list.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\vs1.0_inst.h" />
+    <ClInclude Include="$(ProjectDir)/src\nvparse\vs1.0_inst_list.h" />
+    <ClInclude Include="$(ProjectDir)/include\Win32\OgreWin32Context.h" />
+    <ClInclude Include="$(ProjectDir)/include\Win32\OgreWin32GLSupport.h" />
+    <ClInclude Include="$(ProjectDir)/include\Win32\OgreWin32Prerequisites.h" />
+    <ClInclude Include="$(ProjectDir)/include\Win32\OgreWin32RenderTexture.h" />
+    <ClInclude Include="$(ProjectDir)/include\Win32\OgreWin32Window.h" />
+    <ClInclude Include="$(ProjectDir)/src\Win32\OgreGLUtil.h" />
+    <ClCompile Include="$(ProjectDir)/src\GLSL\src\OgreGLSLExtSupport.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSL\src\OgreGLSLGpuProgram.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSL\src\OgreGLSLLinkProgram.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSL\src\OgreGLSLLinkProgramManager.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSL\src\OgreGLSLPreprocessor.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSL\src\OgreGLSLProgram.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\GLSL\src\OgreGLSLProgramFactory.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\atifs\src\ATI_FS_GLGpuProgram.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\atifs\src\Compiler2Pass.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\atifs\src\ps_1_4.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\_ps1.0_lexer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\_ps1.0_parser.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\_rc1.0_lexer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\_rc1.0_parser.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\_ts1.0_lexer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\_ts1.0_parser.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\_vs1.0_lexer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\_vs1.0_parser.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\avp1.0_impl.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\nvparse.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\nvparse_errors.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\ps1.0_program.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\rc1.0_combiners.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\rc1.0_final.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\rc1.0_general.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\ts1.0_inst.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\ts1.0_inst_list.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\vcp1.0_impl.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\vp1.0_impl.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\vs1.0_inst.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\vs1.0_inst_list.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\nvparse\vsp1.0_impl.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\Win32\OgreWin32Context.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\Win32\OgreWin32GLSupport.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\Win32\OgreWin32RenderTexture.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\Win32\OgreWin32Window.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLATIFSInit.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLContext.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLDefaultHardwareBufferManager.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLDepthBuffer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLEngineDll.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLFBOMultiRenderTarget.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLFBORenderTexture.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLFrameBufferObject.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLGpuNvparseProgram.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLGpuProgram.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLGpuProgramManager.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLHardwareBufferManager.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLHardwareIndexBuffer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLHardwareOcclusionQuery.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLHardwarePixelBuffer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLHardwareVertexBuffer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLPBRenderTexture.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLPixelFormat.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLPlugin.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLRenderSystem.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLRenderTexture.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLRenderToVertexBuffer.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLStateCacheManager.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLSupport.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLTexture.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLTextureManager.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\OgreGLUniformCache.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\glew.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\StateCacheManager\OgreGLNullStateCacheManagerImp.cpp" />
+    <ClCompile Include="$(ProjectDir)/src\StateCacheManager\OgreGLNullUniformCacheImp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\OgreMain\OgreMain.vcxproj">
+      <Project>{670308f0-c65f-3928-8dad-74733ac0e8a8}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Render">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Render\Camera">
+      <UniqueIdentifier>{5c9ba0e2-90ec-462e-9229-ddaed07ab6ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render\Extension">
+      <UniqueIdentifier>{c9c6fee8-866b-4d6b-b64f-47381910be1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Command">
+      <UniqueIdentifier>{3f9209b0-e55f-430c-a122-e010645afaba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{81b22340-58e7-437a-bdb6-dc0973cfc466}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{b44e028d-735f-4bde-b53b-40ec9abbe05e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Concurrency">
+      <UniqueIdentifier>{f376f2d8-cad8-4b6e-822e-e4e9c24e1cbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameEvent">
+      <UniqueIdentifier>{706dc7f3-97e6-4c5b-8697-1f021830895d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DOM">
+      <UniqueIdentifier>{b17ced3b-099b-453a-a6e3-62db1eaccfa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ROM">
+      <UniqueIdentifier>{2ddb9f8b-6e72-4e40-b700-6fe1e011c9e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller\MISC">
+      <UniqueIdentifier>{99c53e7f-e97e-4e47-a939-a8f0d20c9c53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto">
+      <UniqueIdentifier>{324cabbf-3826-47b5-9d14-898b0ea49952}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Render\ICameraFrameListener.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\IFrameListener.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\IFrameListenerFwd.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\OgreEnv.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\OgreWndWrapper.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\OgreWndWrapperFwd.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\SysEvent.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\SysEventFwd.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\SysEventRecorder.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Camera\MayaCamera.h">
+      <Filter>Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\RadiusRaySceneQuery.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\RadiusRaySceneQueryFwd.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\ICommand.h">
+      <Filter>Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\ICommandFwd.h">
+      <Filter>Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\CommandMgr.h">
+      <Filter>Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\QueryUtil.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\VisibilityFlag.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\SimpleBoundingBox.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\TExtMovableObjFactory.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\ExtensionUtil.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\MathUtil.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\CpuTimer.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\AsyncThreadPool.h">
+      <Filter>Concurrency</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\Proactor.h">
+      <Filter>Concurrency</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\ErrorCode.h">
+      <Filter>Concurrency</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameEvent\FrameEvent.h">
+      <Filter>FrameEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameEvent\FrameEventFwd.h">
+      <Filter>FrameEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameEvent\ToolBarEvent.h">
+      <Filter>FrameEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\PCLOctree.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\DebugUtil.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\MeshUtil.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\Line3D.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\QueryMask.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\RenderGroupID.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\PrefabResourceMgr.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\Point3D.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="DOM\DocumentMgr.h">
+      <Filter>DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="ROM\HeightROM.h">
+      <Filter>ROM</Filter>
+    </ClInclude>
+    <ClInclude Include="ROM\IROM.h">
+      <Filter>ROM</Filter>
+    </ClInclude>
+    <ClInclude Include="ROM\IROMFwd.h">
+      <Filter>ROM</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\Line3DFwd.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\Point3DFwd.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="ROM\DocumentROM.h">
+      <Filter>ROM</Filter>
+    </ClInclude>
+    <ClInclude Include="ROM\DocumentROMFwd.h">
+      <Filter>ROM</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\PCLOctreeFwd.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\Circle3D.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\Torus.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\DynamicPlane.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\DynamicCurve.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Extension\DynamicPointSet.h">
+      <Filter>Render\Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameEvent\FloatBarEvent.h">
+      <Filter>FrameEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\MISC\Manipulator.h">
+      <Filter>Controller\MISC</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\CreateCMD.h">
+      <Filter>Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\DeleteCMD.h">
+      <Filter>Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\EditContentCMD.h">
+      <Filter>Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\EditNameCMD.h">
+      <Filter>Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\StringUtil.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="DOM\HeightDOM.h">
+      <Filter>DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameEvent\ControlEvent.h">
+      <Filter>FrameEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="proto\YZMFile.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+    <ClInclude Include="proto\YZMMeasureDocument.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+    <ClInclude Include="proto\YZMMeasureItem.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+    <ClInclude Include="proto\YZMPointCloud.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+    <ClInclude Include="DOM\IDOM.h">
+      <Filter>DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="DOM\IDOMFwd.h">
+      <Filter>DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="DOM\DimensionDOM.h">
+      <Filter>DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="DOM\Document.h">
+      <Filter>DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="DOM\DocumentFwd.h">
+      <Filter>DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="DOM\LineLengthDOM.h">
+      <Filter>DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="DOM\CurveLengthDOM.h">
+      <Filter>DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="ROM\DimensionROM.h">
+      <Filter>ROM</Filter>
+    </ClInclude>
+    <ClInclude Include="ROM\LineLengthROM.h">
+      <Filter>ROM</Filter>
+    </ClInclude>
+    <ClInclude Include="ROM\CurveLengthROM.h">
+      <Filter>ROM</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\BrowserController.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\EditDimensionController.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\EditHeightController.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\EditLineLengthController.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\EditCurveLengthController.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\DummyController.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\PrefabControllerMgr.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\RootController.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\TestController.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\PCLKdtree.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\PCLKdtreeFwd.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\EditFeaturePointController.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Render\ICameraFrameListener.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\IFrameListener.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\OgreEnv.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\OgreWndWrapper.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\SysEventRecorder.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Camera\MayaCamera.cpp">
+      <Filter>Render\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Extension\RadiusRaySceneQuery.cpp">
+      <Filter>Render\Extension</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\CommandMgr.cpp">
+      <Filter>Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\QueryUtil.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Extension\SimpleBoundingBox.cpp">
+      <Filter>Render\Extension</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Extension\ExtensionUtil.cpp">
+      <Filter>Render\Extension</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\MathUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\CpuTimer.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Concurrency\AsyncThreadPool.cpp">
+      <Filter>Concurrency</Filter>
+    </ClCompile>
+    <ClCompile Include="Concurrency\Proactor.cpp">
+      <Filter>Concurrency</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\PCLOctree.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\DebugUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\MeshUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Extension\Line3D.cpp">
+      <Filter>Render\Extension</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\PrefabResourceMgr.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Extension\Point3D.cpp">
+      <Filter>Render\Extension</Filter>
+    </ClCompile>
+    <ClCompile Include="DOM\DocumentMgr.cpp">
+      <Filter>DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="ROM\IROM.cpp">
+      <Filter>ROM</Filter>
+    </ClCompile>
+    <ClCompile Include="ROM\HeightROM.cpp">
+      <Filter>ROM</Filter>
+    </ClCompile>
+    <ClCompile Include="ROM\DocumentROM.cpp">
+      <Filter>ROM</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Extension\Circle3D.cpp">
+      <Filter>Render\Extension</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Extension\Torus.cpp">
+      <Filter>Render\Extension</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Extension\DynamicPlane.cpp">
+      <Filter>Render\Extension</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Extension\DynamicCurve.cpp">
+      <Filter>Render\Extension</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Extension\DynamicPointSet.cpp">
+      <Filter>Render\Extension</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\MISC\Manipulator.cpp">
+      <Filter>Controller\MISC</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\ICommand.cpp">
+      <Filter>Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\CreateCMD.cpp">
+      <Filter>Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\DeleteCMD.cpp">
+      <Filter>Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\EditContentCMD.cpp">
+      <Filter>Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\EditNameCMD.cpp">
+      <Filter>Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\StringUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="DOM\HeightDOM.cpp">
+      <Filter>DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="proto\YZMFile.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+    <ClCompile Include="proto\YZMMeasureDocument.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+    <ClCompile Include="proto\YZMMeasureItem.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+    <ClCompile Include="proto\YZMPointCloud.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+    <ClCompile Include="DOM\IDOM.cpp">
+      <Filter>DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="DOM\DimensionDOM.cpp">
+      <Filter>DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="DOM\Document.cpp">
+      <Filter>DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="DOM\LineLengthDOM.cpp">
+      <Filter>DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="DOM\CurveLengthDOM.cpp">
+      <Filter>DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="ROM\DimensionROM.cpp">
+      <Filter>ROM</Filter>
+    </ClCompile>
+    <ClCompile Include="ROM\LineLengthROM.cpp">
+      <Filter>ROM</Filter>
+    </ClCompile>
+    <ClCompile Include="ROM\CurveLengthROM.cpp">
+      <Filter>ROM</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\BrowserController.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\EditDimensionController.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\EditHeightController.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\EditLineLengthController.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\EditCurveLengthController.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\DummyController.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\PrefabControllerMgr.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\RootController.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\TestController.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\PCLKdtree.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\EditFeaturePointController.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3D93684C-9FE7-49C1-A82B-B5EC0E27A487}</ProjectGuid>
+    <RootNamespace>measureToolCore</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <IncludePath>.;../ogre/ogreMain/include;../ois/includes;../ogre/RenderSystems/GL/include;../ogre/PlugIns/ParticleFX/include;../externals/pcl/include;../externals/Eigen/include;../externals/flann/include;../externals/Opencascade/inc;../externals/libprotobuf/include;$(IncludePath)</IncludePath>
+    <LibraryPath>../externals/pcl/lib/$(PlatformTarget)/$(Configuration);../externals/Opencascade/lib/$(PlatformTarget)/$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>.;../ogre/ogreMain/include;../ois/includes;../ogre/RenderSystems/GL/include;../ogre/PlugIns/ParticleFX/include;../externals/pcl/include;../externals/Eigen/include;../externals/flann/include;../externals/Opencascade/inc;../externals/libprotobuf/include;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <LibraryPath>../externals/pcl/lib/$(PlatformTarget)/$(Configuration);../externals/Opencascade/lib/$(PlatformTarget)/$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <IncludePath>.;../ogre/ogreMain/include;../ois/includes;../ogre/RenderSystems/GL/include;../ogre/PlugIns/ParticleFX/include;../externals/pcl/include;../externals/Eigen/include;../externals/flann/include;../externals/Opencascade/inc;../externals/libprotobuf/include;$(IncludePath)</IncludePath>
+    <LibraryPath>../externals/pcl/lib/$(PlatformTarget)/$(Configuration);../externals/Opencascade/lib/$(PlatformTarget)/$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>.;../ogre/ogreMain/include;../ois/includes;../ogre/RenderSystems/GL/include;../ogre/PlugIns/ParticleFX/include;../externals/pcl/include;../externals/Eigen/include;../externals/flann/include;../externals/Opencascade/inc;../externals/libprotobuf/include;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <LibraryPath>../externals/pcl/lib/$(PlatformTarget)/$(Configuration);../externals/Opencascade/lib/$(PlatformTarget)/$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <DisableSpecificWarnings>4996;4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /E $(ProjectDir)Data $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\Data\
+xcopy /Y /E $(SolutionDir)externals\pcl\bin\$(PlatformTarget)\$(Configuration)\*.dll $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\
+xcopy /Y /E $(SolutionDir)externals\Opencascade\bin\$(PlatformTarget)\$(Configuration)\*.dll $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>Opengl32.lib;TKernel.lib;TKMath.lib;TKPrim.lib;TKTopAlgo.lib;TKGeomBase.lib;TKGeomAlgo.lib;TKG2d.lib;TKG3d.lib;TKBRep.lib;pcl_octree_debug.lib;pcl_filters_debug.lib;pcl_common_debug.lib;pcl_segmentation_debug.lib;pcl_search_debug.lib;pcl_surface_debug.lib</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <DisableSpecificWarnings>4996;4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /E $(ProjectDir)Data $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\Data\
+xcopy /Y /E $(SolutionDir)externals\pcl\bin\$(PlatformTarget)\$(Configuration)\*.dll $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\
+xcopy /Y /E $(SolutionDir)externals\Opencascade\bin\$(PlatformTarget)\$(Configuration)\*.dll $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>Opengl32.lib;TKernel.lib;TKMath.lib;TKPrim.lib;TKTopAlgo.lib;TKGeomBase.lib;TKGeomAlgo.lib;TKG2d.lib;TKG3d.lib;TKBRep.lib;pcl_octree_debug.lib;pcl_filters_debug.lib;pcl_common_debug.lib;pcl_segmentation_debug.lib;pcl_search_debug.lib;pcl_surface_debug.lib;pcl_kdtree_debug.lib</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <DisableSpecificWarnings>4996;4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /E $(ProjectDir)Data $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\Data\
+xcopy /Y /E $(SolutionDir)externals\pcl\bin\$(PlatformTarget)\$(Configuration)\*.dll $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\
+xcopy /Y /E $(SolutionDir)externals\Opencascade\bin\$(PlatformTarget)\$(Configuration)\*.dll $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>Opengl32.lib;TKernel.lib;TKMath.lib;TKPrim.lib;TKTopAlgo.lib;TKGeomBase.lib;TKGeomAlgo.lib;TKG2d.lib;TKG3d.lib;TKBRep.lib;pcl_octree_release.lib;pcl_filters_release.lib;pcl_common_release.lib;pcl_segmentation_release.lib;pcl_search_release.lib;pcl_surface_release.lib</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <DisableSpecificWarnings>4996;4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /E $(ProjectDir)Data $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\Data\
+xcopy /Y /E $(SolutionDir)externals\pcl\bin\$(PlatformTarget)\$(Configuration)\*.dll $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\
+xcopy /Y /E $(SolutionDir)externals\Opencascade\bin\$(PlatformTarget)\$(Configuration)\*.dll $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>Opengl32.lib;TKernel.lib;TKMath.lib;TKPrim.lib;TKTopAlgo.lib;TKGeomBase.lib;TKGeomAlgo.lib;TKG2d.lib;TKG3d.lib;TKBRep.lib;pcl_octree_release.lib;pcl_filters_release.lib;pcl_common_release.lib;pcl_segmentation_release.lib;pcl_search_release.lib;pcl_surface_release.lib;pcl_kdtree_release.lib</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\externals\libprotobuf\libprotobuf.vcxproj">
+      <Project>{285d64b8-630d-3635-b488-4bc2b9ab5ba7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ogre\OgreMain\OgreMain.vcxproj">
+      <Project>{670308f0-c65f-3928-8dad-74733ac0e8a8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ogre\PlugIns\ParticleFX\Plugin_ParticleFX.vcxproj">
+      <Project>{e8609248-d48d-3da4-9a9b-9599bb2063a6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ogre\RenderSystems\GL\RenderSystem_GL.vcxproj">
+      <Project>{cca67bc2-7fe1-3389-a360-c72a5cbf6578}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Command\CommandMgr.h" />
+    <ClInclude Include="Command\CreateCMD.h" />
+    <ClInclude Include="Command\DeleteCMD.h" />
+    <ClInclude Include="Command\EditContentCMD.h" />
+    <ClInclude Include="Command\EditNameCMD.h" />
+    <ClInclude Include="Command\ICommand.h" />
+    <ClInclude Include="Command\ICommandFwd.h" />
+    <ClInclude Include="Concurrency\AsyncThreadPool.h" />
+    <ClInclude Include="Concurrency\ErrorCode.h" />
+    <ClInclude Include="Concurrency\Proactor.h" />
+    <ClInclude Include="Controller\BrowserController.h" />
+    <ClInclude Include="Controller\EditDimensionController.h" />
+    <ClInclude Include="Controller\EditFeaturePointController.h" />
+    <ClInclude Include="Controller\EditHeightController.h" />
+    <ClInclude Include="Controller\EditLineLengthController.h" />
+    <ClInclude Include="Controller\EditCurveLengthController.h" />
+    <ClInclude Include="Controller\MISC\Manipulator.h" />
+    <ClInclude Include="Controller\PrefabControllerMgr.h" />
+    <ClInclude Include="Controller\RootController.h" />
+    <ClInclude Include="Controller\DummyController.h" />
+    <ClInclude Include="Controller\TestController.h" />
+    <ClInclude Include="DOM\DimensionDOM.h" />
+    <ClInclude Include="DOM\Document.h" />
+    <ClInclude Include="DOM\DocumentFwd.h" />
+    <ClInclude Include="DOM\DocumentMgr.h" />
+    <ClInclude Include="DOM\HeightDOM.h" />
+    <ClInclude Include="DOM\LineLengthDOM.h" />
+    <ClInclude Include="DOM\IDOM.h" />
+    <ClInclude Include="DOM\IDOMFwd.h" />
+    <ClInclude Include="DOM\CurveLengthDOM.h" />
+    <ClInclude Include="FrameEvent\ControlEvent.h" />
+    <ClInclude Include="FrameEvent\FloatBarEvent.h" />
+    <ClInclude Include="FrameEvent\FrameEvent.h" />
+    <ClInclude Include="FrameEvent\FrameEventFwd.h" />
+    <ClInclude Include="FrameEvent\ToolBarEvent.h" />
+    <ClInclude Include="proto\YZMFile.pb.h" />
+    <ClInclude Include="proto\YZMMeasureDocument.pb.h" />
+    <ClInclude Include="proto\YZMMeasureItem.pb.h" />
+    <ClInclude Include="proto\YZMPointCloud.pb.h" />
+    <ClInclude Include="Render\Camera\MayaCamera.h" />
+    <ClInclude Include="Render\Extension\Circle3D.h" />
+    <ClInclude Include="Render\Extension\DynamicCurve.h" />
+    <ClInclude Include="Render\Extension\DynamicPlane.h" />
+    <ClInclude Include="Render\Extension\DynamicPointSet.h" />
+    <ClInclude Include="Render\Extension\ExtensionUtil.h" />
+    <ClInclude Include="Render\Extension\Line3D.h" />
+    <ClInclude Include="Render\Extension\Line3DFwd.h" />
+    <ClInclude Include="Render\Extension\Point3D.h" />
+    <ClInclude Include="Render\Extension\Point3DFwd.h" />
+    <ClInclude Include="Render\Extension\RadiusRaySceneQuery.h" />
+    <ClInclude Include="Render\Extension\RadiusRaySceneQueryFwd.h" />
+    <ClInclude Include="Render\Extension\SimpleBoundingBox.h" />
+    <ClInclude Include="Render\Extension\TExtMovableObjFactory.h" />
+    <ClInclude Include="Render\Extension\Torus.h" />
+    <ClInclude Include="Render\ICameraFrameListener.h" />
+    <ClInclude Include="Render\IFrameListener.h" />
+    <ClInclude Include="Render\IFrameListenerFwd.h" />
+    <ClInclude Include="Render\OgreEnv.h" />
+    <ClInclude Include="Render\OgreWndWrapper.h" />
+    <ClInclude Include="Render\OgreWndWrapperFwd.h" />
+    <ClInclude Include="Render\PrefabResourceMgr.h" />
+    <ClInclude Include="Render\QueryMask.h" />
+    <ClInclude Include="Render\QueryUtil.h" />
+    <ClInclude Include="Render\RenderGroupID.h" />
+    <ClInclude Include="Render\SysEvent.h" />
+    <ClInclude Include="Render\SysEventFwd.h" />
+    <ClInclude Include="Render\SysEventRecorder.h" />
+    <ClInclude Include="Render\VisibilityFlag.h" />
+    <ClInclude Include="ROM\DimensionROM.h" />
+    <ClInclude Include="ROM\DocumentROM.h" />
+    <ClInclude Include="ROM\DocumentROMFwd.h" />
+    <ClInclude Include="ROM\HeightROM.h" />
+    <ClInclude Include="ROM\IROM.h" />
+    <ClInclude Include="ROM\IROMFwd.h" />
+    <ClInclude Include="ROM\LineLengthROM.h" />
+    <ClInclude Include="ROM\CurveLengthROM.h" />
+    <ClInclude Include="Util\CpuTimer.h" />
+    <ClInclude Include="Util\DebugUtil.h" />
+    <ClInclude Include="Util\MathUtil.h" />
+    <ClInclude Include="Util\MeshUtil.h" />
+    <ClInclude Include="Util\PCLKdtree.h" />
+    <ClInclude Include="Util\PCLKdtreeFwd.h" />
+    <ClInclude Include="Util\PCLOctree.h" />
+    <ClInclude Include="Util\PCLOctreeFwd.h" />
+    <ClInclude Include="Util\StringUtil.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Command\CommandMgr.cpp" />
+    <ClCompile Include="Command\CreateCMD.cpp" />
+    <ClCompile Include="Command\DeleteCMD.cpp" />
+    <ClCompile Include="Command\EditContentCMD.cpp" />
+    <ClCompile Include="Command\EditNameCMD.cpp" />
+    <ClCompile Include="Command\ICommand.cpp" />
+    <ClCompile Include="Concurrency\AsyncThreadPool.cpp" />
+    <ClCompile Include="Concurrency\Proactor.cpp" />
+    <ClCompile Include="Controller\BrowserController.cpp" />
+    <ClCompile Include="Controller\EditDimensionController.cpp" />
+    <ClCompile Include="Controller\EditFeaturePointController.cpp" />
+    <ClCompile Include="Controller\EditHeightController.cpp" />
+    <ClCompile Include="Controller\EditLineLengthController.cpp" />
+    <ClCompile Include="Controller\EditCurveLengthController.cpp" />
+    <ClCompile Include="Controller\MISC\Manipulator.cpp" />
+    <ClCompile Include="Controller\PrefabControllerMgr.cpp" />
+    <ClCompile Include="Controller\RootController.cpp" />
+    <ClCompile Include="Controller\DummyController.cpp" />
+    <ClCompile Include="Controller\TestController.cpp" />
+    <ClCompile Include="DOM\DimensionDOM.cpp" />
+    <ClCompile Include="DOM\Document.cpp" />
+    <ClCompile Include="DOM\DocumentMgr.cpp" />
+    <ClCompile Include="DOM\HeightDOM.cpp" />
+    <ClCompile Include="DOM\IDOM.cpp" />
+    <ClCompile Include="DOM\LineLengthDOM.cpp" />
+    <ClCompile Include="DOM\CurveLengthDOM.cpp" />
+    <ClCompile Include="proto\YZMFile.pb.cc" />
+    <ClCompile Include="proto\YZMMeasureDocument.pb.cc" />
+    <ClCompile Include="proto\YZMMeasureItem.pb.cc" />
+    <ClCompile Include="proto\YZMPointCloud.pb.cc" />
+    <ClCompile Include="Render\Camera\MayaCamera.cpp" />
+    <ClCompile Include="Render\Extension\Circle3D.cpp" />
+    <ClCompile Include="Render\Extension\DynamicCurve.cpp" />
+    <ClCompile Include="Render\Extension\DynamicPlane.cpp" />
+    <ClCompile Include="Render\Extension\DynamicPointSet.cpp" />
+    <ClCompile Include="Render\Extension\ExtensionUtil.cpp" />
+    <ClCompile Include="Render\Extension\Line3D.cpp" />
+    <ClCompile Include="Render\Extension\Point3D.cpp" />
+    <ClCompile Include="Render\Extension\RadiusRaySceneQuery.cpp" />
+    <ClCompile Include="Render\Extension\SimpleBoundingBox.cpp" />
+    <ClCompile Include="Render\Extension\Torus.cpp" />
+    <ClCompile Include="Render\ICameraFrameListener.cpp" />
+    <ClCompile Include="Render\IFrameListener.cpp" />
+    <ClCompile Include="Render\OgreEnv.cpp" />
+    <ClCompile Include="Render\OgreWndWrapper.cpp" />
+    <ClCompile Include="Render\PrefabResourceMgr.cpp" />
+    <ClCompile Include="Render\QueryUtil.cpp" />
+    <ClCompile Include="Render\SysEventRecorder.cpp" />
+    <ClCompile Include="ROM\DimensionROM.cpp" />
+    <ClCompile Include="ROM\DocumentROM.cpp" />
+    <ClCompile Include="ROM\HeightROM.cpp" />
+    <ClCompile Include="ROM\IROM.cpp" />
+    <ClCompile Include="ROM\LineLengthROM.cpp" />
+    <ClCompile Include="ROM\CurveLengthROM.cpp" />
+    <ClCompile Include="Util\CpuTimer.cpp" />
+    <ClCompile Include="Util\DebugUtil.cpp" />
+    <ClCompile Include="Util\MathUtil.cpp" />
+    <ClCompile Include="Util\MeshUtil.cpp" />
+    <ClCompile Include="Util\PCLKdtree.cpp" />
+    <ClCompile Include="Util\PCLOctree.cpp" />
+    <ClCompile Include="Util\StringUtil.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

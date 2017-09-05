@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package yzm;
+
+message Vector3
+{
+	float x = 1;
+	float y = 2;
+	float z = 3;
+}
+
+message MeasureItem
+{
+	enum EAutoMeasureType
+	{
+		None = 0;
+		BodyHeight = 1;
+		ChestWidth = 2;
+		BackWidth = 3;
+		ShoulderWidth = 4;
+		ChestDimension = 5;
+		WaistDimension = 6;
+		WristDimension = 7;
+		KneeDimension = 8;
+		HipDimension = 9;
+		ArmDimension = 10;
+		ArmLength = 11;
+		BPDistance = 12;
+		LegDimension = 13;
+		LegLength = 14;
+	}
+
+	EAutoMeasureType	auto_measure_type = 1;
+	int32	dom_type = 2;
+	uint32	dom_index = 3;
+	string	name = 4;
+	float	value = 5;
+	uint32	edit_time = 6;
+	repeated Vector3 point_list = 7;
+	bytes	dom_extension = 8;
+}

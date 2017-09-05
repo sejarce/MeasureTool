@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package yzm;
+
+message	Vertex
+{
+	enum EBodyType
+	{
+		None = 0;
+		LeftHandle = 50;
+		RightHandle = 70;
+		LeftLeg = 90;
+		RightLeg = 110;
+		Body = 130;
+		Head = 150;
+	}
+	
+	float x = 1;
+	float y = 2;
+	float z = 3;
+	float r = 4;
+	float g = 5;
+	float b = 6;
+	int32 row_id = 7;
+	int32 col_id = 8;
+	EBodyType body_type = 9;
+	int32 sensor_id = 10;
+}
+
+message	PointCloud
+{
+	enum EPntType
+	{
+		OSG = 0;
+		Ogre = 1;
+	}
+	
+	EPntType point_type = 1;
+	repeated Vertex point_list = 2;
+	string device_id = 3;
+	string guid = 4;
+}

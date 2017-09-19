@@ -2807,6 +2807,18 @@ Rectangle {
 				btn_export.enabled = false
 				image_export.source = "res/icon_export_false.png"
 			}
+			
+
+		}
+		
+		onEstimateDataSuccess:{
+			console.log("onEstimateDataSuccess");
+			saveCurrData()
+			DataModel.currData.setSaved(true)
+			setCheckToolBar(1)
+			setCheckItem(0)
+			btn_saveoredit_text.text = "编辑"
+			btn_cancelordelete_text.text = "移除"
 		}
 		
 		onUpdateValue:{
@@ -3064,6 +3076,8 @@ Rectangle {
 				num |= 0x20
 			}
 			setCheckToolBar(num)
+			
+			console.log("onCurrDataChanged over")
 		}
 		
 		onClickCanceled: {

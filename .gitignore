@@ -190,3 +190,4 @@ ModelManifest.xml
 /*.exe
 /Setup/*.isl
 /Setup/*.isproj
+/externals/openpose/models/pose/coco/pose_iter_440000.caffemodel

@@ -120,14 +120,14 @@ void AddDescriptorsImpl() {
       ".Vertex.EBodyType\022\021\n\tsensor_id\030\n \001(\005\"g\n\t"
       "EBodyType\022\010\n\004None\020\000\022\016\n\nLeftHandle\0202\022\017\n\013R"
       "ightHandle\020F\022\013\n\007LeftLeg\020Z\022\014\n\010RightLeg\020n\022"
-      "\t\n\004Body\020\202\001\022\t\n\004Head\020\226\001\"\233\001\n\nPointCloud\022,\n\n"
+      "\t\n\004Body\020\202\001\022\t\n\004Head\020\226\001\"\244\001\n\nPointCloud\022,\n\n"
       "point_type\030\001 \001(\0162\030.yzm.PointCloud.EPntTy"
       "pe\022\037\n\npoint_list\030\002 \003(\0132\013.yzm.Vertex\022\021\n\td"
-      "evice_id\030\003 \001(\t\022\014\n\004guid\030\004 \001(\t\"\035\n\010EPntType"
-      "\022\007\n\003OSG\020\000\022\010\n\004Ogre\020\001b\006proto3"
+      "evice_id\030\003 \001(\t\022\014\n\004guid\030\004 \001(\t\"&\n\010EPntType"
+      "\022\007\n\003OSG\020\000\022\010\n\004Ogre\020\001\022\007\n\003Ply\020\002b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 467);
+      descriptor, 476);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "YZMPointCloud.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
@@ -185,6 +185,7 @@ bool PointCloud_EPntType_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
+    case 2:
       return true;
     default:
       return false;
@@ -194,6 +195,7 @@ bool PointCloud_EPntType_IsValid(int value) {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const PointCloud_EPntType PointCloud::OSG;
 const PointCloud_EPntType PointCloud::Ogre;
+const PointCloud_EPntType PointCloud::Ply;
 const PointCloud_EPntType PointCloud::EPntType_MIN;
 const PointCloud_EPntType PointCloud::EPntType_MAX;
 const int PointCloud::EPntType_ARRAYSIZE;

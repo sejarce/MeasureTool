@@ -16,6 +16,8 @@
 #include <bitset>
 #include <chrono>
 
+#include <iostream>
+
 using	DocumentWPtr = std::weak_ptr<Document>;
 
 class	IDOM::Imp
@@ -114,6 +116,13 @@ float IDOM::GetValue() const
 	return imp_.Value_;
 }
 
+void IDOM::SetValue(float val)
+{
+	auto& imp_ = *ImpUPtr_;
+
+	imp_.Value_ = val;
+}
+
 void IDOM::UpdateEditTime()
 {
 	auto& imp_ = *ImpUPtr_;
@@ -172,7 +181,7 @@ void IDOM::UpdateDOM()
 {
 	auto& imp_ = *ImpUPtr_;
 	OnUpdate(imp_.Value_, imp_.PntList_);
-
+	std::cout << "OnUpdate" << std::endl;
 	//if (imp_.Dirty_)
 	//{
 	//	auto now = std::chrono::system_clock::now();
@@ -185,6 +194,8 @@ void IDOM::UpdateDOM()
 	}
 
 	imp_.Listener_.OnChangeUIValue(imp_.Name_, imp_.Value_, imp_.LastEditTime_);
+
+	std::cout << "UpdateDOM" << std::endl;
 }
 
 void IDOM::DeSerialize(const yzm::MeasureItem& dominfo)
@@ -220,6 +231,21 @@ void IDOM::DeSerialize(const yzm::MeasureItem& dominfo)
 			return;
 		OnDeserialize(imp_.PntList_);
 	}
+
+	UpdateDOM();
+}
+
+void IDOM::DeSerialize(const PntList& pList)
+{
+	auto& imp_ = *ImpUPtr_;
+
+	imp_.PntList_.clear();
+	for (auto cur : pList)
+	{
+		imp_.PntList_.emplace_back(cur);
+	}
+
+	OnDeserialize(imp_.PntList_);
 
 	UpdateDOM();
 }

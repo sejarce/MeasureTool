@@ -31,6 +31,12 @@ public:
 	DocumentROMSPtr	DocROM;
 };
 
+class	SFE_EstimateData : public TFrameEvent<SFE_EstimateData>
+{
+public:
+
+};
+
 class	SFE_SDC : public TFrameEvent<SFE_SDC>
 {
 public://TOUI

@@ -523,9 +523,9 @@ Ogre::MeshPtr MeshUtil::BuildMesh(const yzm::PointCloud& pointCloud, const std::
 	curSubMesh->useSharedVertices = false;
 	curSubMesh->vertexData = new Ogre::VertexData;
 
-	auto osgMesh = pointCloud.point_type() == yzm::PointCloud_EPntType_OSG;
+	auto point_type = pointCloud.point_type();// == yzm::PointCloud_EPntType_OSG;
 	Ogre::VertexElementType ogreColorType;
-	if (osgMesh)
+	if (point_type == yzm::PointCloud_EPntType_OSG)
 	{
 		ogreColorType = Ogre::VET_COLOUR_ABGR;
 	}
@@ -552,13 +552,19 @@ Ogre::MeshPtr MeshUtil::BuildMesh(const yzm::PointCloud& pointCloud, const std::
 
 			posEle.baseVertexPointerToElement(pBuf, &pVal);
 
-			if ( !osgMesh )
+			if (point_type == yzm::PointCloud_EPntType_Ply)
+			{
+				pVal[0] = curVertex.x();
+				pVal[1] = -curVertex.y();
+				pVal[2] = -curVertex.z();
+			}
+			else if (point_type == yzm::PointCloud_EPntType_Ogre)
 			{
 				pVal[0] = curVertex.x();
 				pVal[1] = curVertex.y();
 				pVal[2] = curVertex.z();
 			}
-			else
+			else if(point_type == yzm::PointCloud_EPntType_OSG)
 			{
 				pVal[0] = curVertex.x();
 				pVal[1] = curVertex.z();
@@ -568,7 +574,7 @@ Ogre::MeshPtr MeshUtil::BuildMesh(const yzm::PointCloud& pointCloud, const std::
 			Ogre::ColourValue clr(curVertex.r(), curVertex.g(), curVertex.b());
 
 			clrEle.baseVertexPointerToElement(pBuf, &pClrVal);
-			if (!osgMesh)
+			if (point_type != yzm::PointCloud_EPntType_OSG)
 			{
 				*pClrVal = clr.getAsARGB();
 			}
@@ -679,3 +685,4 @@ bool MeshUtil::ImportMesh(yzm::PointCloud& pointCloud, std::string& buf)
 
 	return true;
 }
+

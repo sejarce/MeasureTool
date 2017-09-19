@@ -9,6 +9,7 @@
 #include "Render/Camera/MayaCamera.h"
 #include "Render/VisibilityFlag.h"
 #include "Render/QueryUtil.h"
+#include "Render/OgreEnv.h"
 
 #include "FrameEvent/ToolBarEvent.h"
 #include "FrameEvent/FloatBarEvent.h"
@@ -17,8 +18,9 @@
 #include "ROM/DocumentROM.h"
 #include "ROM/IROM.h"
 
-//#include "DOM/Document.h"
+#include "DOM/Document.h"
 #include "DOM/IDOM.h"
+#include "DOM/DocumentMgr.h"
 
 #include "Util/MathUtil.h"
 #include "Util/CpuTimer.h"
@@ -119,8 +121,10 @@ public:
 			}
 		}
 		Select_ = rom;
-		rom->SetPickingState(IROM::EPS_Select);
-		rom->SetVisible(true);
+		if (rom.get()) {
+			rom->SetPickingState(IROM::EPS_Select);
+			rom->SetVisible(true);
+		}
 	}
 
 	void	EditItem(const std::shared_ptr<SFE_EditItem>& fe)
@@ -233,11 +237,17 @@ void BrowserController::_FrameQueue(const Ogre::FrameEvent& fevt)
 	switch ( imp_.State_ )
 	{
 	case Imp::ES_Init:
-	{
+	{	
 		auto fe = PopFrameEvent<SFE_OpenDocROM>();
 		assert(fe);
 
-		auto rom = fe->DocROM;
+		if (DocumentMgr::GetInstance().GetActiveDocument()->estimateData())
+		{
+			SFE_EstimateData fe;
+			OgreEnv::GetInstance().PostFrameEventToUI(fe.ConvertToFrameEvent());
+		}
+
+		auto rom = DocumentMgr::GetInstance().GetActiveDocument()->GetDocumentROM();//fe->DocROM;
 		imp_.HummanMesh_ = rom->GetMesh();
 		imp_.Octree_ = rom->GetOctree();
 		imp_.Kdtree_ = rom->GetKdtree();
@@ -267,7 +277,7 @@ void BrowserController::_FrameQueue(const Ogre::FrameEvent& fevt)
 		{
 			imp_.Select_ = imp_.DocRom_->GetROMList().front();
 		}
-
+		
 		imp_.State_ = Imp::ES_Broswer;
 	}
 	break;

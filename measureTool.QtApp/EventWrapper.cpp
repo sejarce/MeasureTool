@@ -58,7 +58,7 @@ EventWrapper::~EventWrapper()
 
 bool EventWrapper::openFileDlg()
 {
-	QString fileName = QFileDialog::getOpenFileName(NULL, tr("Open File"), m_openDir.c_str(), tr("YZM (*.yzm);;Mesh (*.mesh)"));						//.ply .mesh
+	QString fileName = QFileDialog::getOpenFileName(NULL, tr("Open File"), m_openDir.c_str(), tr("YZM (*.yzm);;Mesh (*.mesh);;PLY(*.ply)"));						//.ply .mesh
 	if ( fileName.size() == 0 )
 	{
 		return false;
@@ -87,6 +87,10 @@ bool EventWrapper::openFileDlg()
 	{
 		newDoc = DocumentMgr::GetInstance().OpenDocument(stdFileName);
 	}
+	else if ( pt.extension() == ".ply" )
+	{
+		newDoc = DocumentMgr::GetInstance().ImportPly(stdFileName);
+	}
 
 	if ( newDoc )
 	{
@@ -99,7 +103,7 @@ bool EventWrapper::openFileDlg()
 
 		newDoc->GetListener().OnCreateDOM.connect([this](const IDOMSPtr& dom)
 		{
-			createItemFromDOM(dom, true, false);
+			createItemFromDOM(dom, true, dom->isSaved());
 		});
 
 		newDoc->GetListener().OnRemoveDOM.connect([this](const IDOMSPtr& dom)
@@ -108,6 +112,11 @@ bool EventWrapper::openFileDlg()
 		});
 
 		DocumentROM::Create(newDoc, OgreEnv::GetInstance().GetGlobalSmgr());
+
+		if (pt.extension() == ".ply")
+		{
+			//return newDoc->estimateData();
+		}
 	}
 	else
 	{
@@ -179,8 +188,11 @@ void EventWrapper::createItemFromDOM(IDOMSPtr dom, bool regSignal, bool saved)
 	default:
 	break;
 	}
-	sfe.Status = SFE_EditItem::ES_CreateMode;
-	OgreEnv::GetInstance().PostFrameEventTo3D(sfe.ConvertToFrameEvent());
+	if (!saved)
+	{
+		sfe.Status = SFE_EditItem::ES_CreateMode;
+		OgreEnv::GetInstance().PostFrameEventTo3D(sfe.ConvertToFrameEvent());
+	}
 
 	//创建一个newdata，并设为当前data
 	DataWrapper* data = NULL;

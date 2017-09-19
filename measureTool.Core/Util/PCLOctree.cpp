@@ -161,6 +161,7 @@ PCLOctree::~PCLOctree()
 
 void PCLOctree::Build(const Ogre::MeshPtr& meshPtr, float leafSize, float resolution)
 {
+	std::cout << "PCLOctree::Build" << std::endl;
 	auto& imp_ = *ImpUPtr_;
 
 	imp_.Octree_ = std::make_unique<Imp::OctreeType>(resolution);
@@ -296,12 +297,11 @@ PCLOctree::RayQueryOpt PCLOctree::RayQuery(const Ogre::Ray& ray, float resolutio
 PCLOctree::PlaneQueryVector PCLOctree::PlaneQuery(const Ogre::Plane& pln, const Ogre::Vector3& queryPnt, float resolution) const
 {
 	auto& imp_ = *ImpUPtr_;
-
 	auto squareDeviation = resolution * resolution;
 
 	Imp::PlaneQueryResult plnResult;
 	Imp::PlaneQuery(plnResult, imp_.NodeBoxList_, *( imp_.Octree_->begin() ), pln);
-
+	
 	auto clusters = boost::make_shared<Imp::PointCloudType>();
 
 	for ( auto curNode : plnResult )

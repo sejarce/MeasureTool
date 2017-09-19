@@ -81,12 +81,13 @@ inline bool Vertex_EBodyType_Parse(
 enum PointCloud_EPntType {
   PointCloud_EPntType_OSG = 0,
   PointCloud_EPntType_Ogre = 1,
+  PointCloud_EPntType_Ply = 2,
   PointCloud_EPntType_PointCloud_EPntType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   PointCloud_EPntType_PointCloud_EPntType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool PointCloud_EPntType_IsValid(int value);
 const PointCloud_EPntType PointCloud_EPntType_EPntType_MIN = PointCloud_EPntType_OSG;
-const PointCloud_EPntType PointCloud_EPntType_EPntType_MAX = PointCloud_EPntType_Ogre;
+const PointCloud_EPntType PointCloud_EPntType_EPntType_MAX = PointCloud_EPntType_Ply;
 const int PointCloud_EPntType_EPntType_ARRAYSIZE = PointCloud_EPntType_EPntType_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* PointCloud_EPntType_descriptor();
@@ -353,6 +354,8 @@ class PointCloud : public ::google::protobuf::Message /* @@protoc_insertion_poin
     PointCloud_EPntType_OSG;
   static const EPntType Ogre =
     PointCloud_EPntType_Ogre;
+  static const EPntType Ply =
+    PointCloud_EPntType_Ply;
   static inline bool EPntType_IsValid(int value) {
     return PointCloud_EPntType_IsValid(value);
   }

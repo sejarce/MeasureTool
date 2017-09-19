@@ -48,6 +48,8 @@ public:
 	Point3D*					LeftPoint_{};
 	Point3D*					RightPoint_{};
 
+	std::vector<Point3D*>		FeaturePoints_{};
+
 	Ogre::SceneNode*			AuxNode_{};
 	Ogre::SceneNode*			AuxXNode_{};
 	Ogre::SceneNode*			AuxYNode_{};
@@ -150,6 +152,15 @@ EditFeaturePointController::EditFeaturePointController(Ogre::RenderWindow* rt
 	imp_.LeftPoint_->setVisible(false);
 	imp_.RightPoint_->setVisible(false);
 
+	for (auto cur : doc->getFeaturePoints())
+	{
+		auto point3d = Point3DFactory::CreateInstance(imp_.Smgr_);
+		point3d->SetPoint(cur.second);
+		imp_.Node_->attachObject(point3d);
+		point3d->setVisible(false);
+		imp_.FeaturePoints_.emplace_back(point3d);
+	}
+
 	imp_.AuxNode_ = imp_.HumanNode_->createChildSceneNode();
 
 	imp_.AuxXNode_ = imp_.AuxNode_->createChildSceneNode();
@@ -182,6 +193,13 @@ EditFeaturePointController::~EditFeaturePointController()
 	imp_.CrothPoint_->Destory();
 	imp_.LeftPoint_->Destory();
 	imp_.RightPoint_->Destory();
+
+	for (int i = 0; i < imp_.FeaturePoints_.size(); i++)
+	{
+		imp_.FeaturePoints_[i]->Destory();
+	}
+	imp_.FeaturePoints_.clear();
+	std::vector<Point3D*>().swap(imp_.FeaturePoints_);
 
 	imp_.Node_->removeAllChildren();
 	imp_.Node_->getParentSceneNode()->removeChild(imp_.Node_);
@@ -234,6 +252,12 @@ void EditFeaturePointController::_FrameQueue(const Ogre::FrameEvent& fevt)
 		imp_.CrothPoint_->setVisible(true);
 		imp_.LeftPoint_->setVisible(true);
 		imp_.RightPoint_->setVisible(true);
+
+		for (auto cur : imp_.FeaturePoints_)
+		{
+			cur->setVisible(true);
+		}
+
 		imp_.State_ = Imp::ES_Edit;
 	}
 	break;	

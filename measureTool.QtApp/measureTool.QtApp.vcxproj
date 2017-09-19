@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -26,26 +26,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -82,15 +82,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
-    <IncludePath>../measureTool.Core;../ogre/ogreMain/include;../ois/includes;../externals/qt5.7.0/include;$(IncludePath)</IncludePath>
-    <LibraryPath>../externals/qt5.7.0/lib/$(PlatformTarget)/$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>.;../measureTool.Core;../ogre/ogreMain/include;../ois/includes;../ogre/RenderSystems/GL/include;../ogre/PlugIns/ParticleFX/include;../externals/pcl/include;../externals/Eigen/include;../externals/flann/include;../externals/Opencascade/inc;..\externals\openpose\3rdparty\windows\opencv\include;..\externals\openpose\3rdparty\windows\caffe\include;..\externals\openpose\3rdparty\windows\caffe\include2;..\externals\openpose\3rdparty\windows\caffe3rdparty\include;..\externals\opencv\include;..\externals\openpose\include;$(CUDA_PATH_V8_0)\include;..\externals\qt5.7.0\v140\include;$(IncludePath)</IncludePath>
+    <LibraryPath>../externals/qt5.7.0/v140/lib/$(PlatformTarget)/$(Configuration);..\externals\openpose\3rdparty\windows\caffe\lib;..\externals\opencv\lib\$(PlatformTarget)/$(Configuration);../externals\openpose\3rdparty\windows\caffe3rdparty\lib;../externals/openpose/windows\x64\lib;$(CUDA_PATH_V8_0)\lib\x64;..\externals\pcl\lib\$(PlatformTarget)/$(Configuration);$(LibraryPath)</LibraryPath>
     <TargetName>MeasureTool</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
-    <IncludePath>../measureTool.Core;../ogre/ogreMain/include;../ois/includes;../externals/qt5.7.0/include;$(IncludePath)</IncludePath>
-    <LibraryPath>../externals/qt5.7.0/lib/$(PlatformTarget)/$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>.;../measureTool.Core;../ogre/ogreMain/include;../ois/includes;../ogre/RenderSystems/GL/include;../ogre/PlugIns/ParticleFX/include;../externals/pcl/include;../externals/Eigen/include;../externals/flann/include;../externals/Opencascade/inc;..\externals\openpose\3rdparty\windows\opencv\include;..\externals\openpose\3rdparty\windows\caffe\include;..\externals\openpose\3rdparty\windows\caffe\include2;..\externals\openpose\3rdparty\windows\caffe3rdparty\include;..\externals\opencv\include;..\externals\openpose\include;$(CUDA_PATH_V8_0)\include;..\externals\qt5.7.0\v140\include;$(IncludePath)</IncludePath>
+    <LibraryPath>../externals/qt5.7.0/v140/lib/$(PlatformTarget)/$(Configuration);..\externals\openpose\3rdparty\windows\caffe\lib;..\externals\opencv\lib\$(PlatformTarget)/$(Configuration);../externals\openpose\3rdparty\windows\caffe3rdparty\lib;../externals/openpose/windows\x64\lib;$(CUDA_PATH_V8_0)\lib\x64;..\externals\pcl\lib\$(PlatformTarget)/$(Configuration);$(LibraryPath)</LibraryPath>
     <TargetName>MeasureTool</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -119,18 +119,19 @@ xcopy /Y /E $(ProjectDir)qml $(SolutionDir)build\bin\$(PlatformTarget)\$(Configu
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_CAFFE;GLOG_NO_ABBREVIATED_SEVERITIES;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4996;4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\$(TargetName).lib</ImportLibrary>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>Qt5Cored.lib;Qt5Guid.lib;Qt5Quickd.lib;Qt5Qmld.lib;Qt5Widgetsd.lib;qtmaind.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>caffe.lib;caffeproto.lib;caffehdf5.lib;caffehdf5_hl.lib;caffezlib.lib;gflags.lib;glog.lib;leveldb.lib;libopenblas.dll.a;lmdb.lib;snappy.lib;opencv_world310.lib;OpenPose.lib;cudnn.lib;opencv_core310d.lib;pcl_features_debug.lib;pcl_io_debug.lib;pcl_io_ply_debug.lib;pcl_octree_debug.lib;pcl_filters_debug.lib;pcl_common_debug.lib;pcl_segmentation_debug.lib;pcl_search_debug.lib;pcl_surface_debug.lib;pcl_kdtree_debug.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Quickd.lib;Qt5Qmld.lib;Qt5Widgetsd.lib;qtmaind.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /E $(SolutionDir)externals\qt5.7.0\bin\$(PlatformTarget)\$(Configuration) $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\
-xcopy /Y /E $(ProjectDir)qml $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\qml\</Command>
+      <Command>xcopy /Y /E $(SolutionDir)externals\qt5.7.0\$(DefaultPlatformToolset)\bin\$(PlatformTarget)\$(Configuration) $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\
+xcopy /Y /E $(ProjectDir)qml $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\qml\
+xcopy /Y /E $(SolutionDir)externals\openpose\models $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\openpose\models\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -165,7 +166,7 @@ xcopy /Y /E $(ProjectDir)qml $(SolutionDir)build\bin\$(PlatformTarget)\$(Configu
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_CAFFE;GLOG_NO_ABBREVIATED_SEVERITIES;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4996;4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -173,12 +174,13 @@ xcopy /Y /E $(ProjectDir)qml $(SolutionDir)build\bin\$(PlatformTarget)\$(Configu
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <ImportLibrary>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\$(TargetName).lib</ImportLibrary>
-      <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;Qt5Quick.lib;Qt5Qml.lib;Qt5Widgets.lib;qtmain.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>caffe.lib;caffeproto.lib;caffehdf5.lib;caffehdf5_hl.lib;caffezlib.lib;gflags.lib;glog.lib;leveldb.lib;libopenblas.dll.a;lmdb.lib;snappy.lib;opencv_world310.lib;OpenPose.lib;cudnn.lib;opencv_core310.lib;pcl_features_release.lib;pcl_io_release.lib;pcl_io_ply_release.lib;pcl_octree_release.lib;pcl_filters_release.lib;pcl_common_release.lib;pcl_segmentation_release.lib;pcl_search_release.lib;pcl_surface_release.lib;pcl_kdtree_release.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Quick.lib;Qt5Qml.lib;Qt5Widgets.lib;qtmain.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /E $(SolutionDir)externals\qt5.7.0\bin\$(PlatformTarget)\$(Configuration) $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\
-xcopy /Y /E $(ProjectDir)qml $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\qml\</Command>
+      <Command>xcopy /Y /E $(SolutionDir)externals\qt5.7.0\$(DefaultPlatformToolset)\bin\$(PlatformTarget)\$(Configuration) $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\
+xcopy /Y /E $(ProjectDir)qml $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\qml\
+xcopy /Y /E $(SolutionDir)externals\openpose\models $(SolutionDir)build\bin\$(PlatformTarget)\$(Configuration)\openpose\models\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -194,8 +196,8 @@ xcopy /Y /E $(ProjectDir)qml $(SolutionDir)build\bin\$(PlatformTarget)\$(Configu
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="DataModel.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SolutionDir)\externals\qt5.7.0\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SolutionDir)\externals\qt5.7.0\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SolutionDir)\externals\qt5.7.0\v140\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SolutionDir)\externals\qt5.7.0\v140\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">moc_%(Filename).cpp</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">moc_%(Filename).cpp</Outputs>
     </CustomBuild>
@@ -203,8 +205,8 @@ xcopy /Y /E $(ProjectDir)qml $(SolutionDir)build\bin\$(PlatformTarget)\$(Configu
     <CustomBuild Include="QT5RenderWindow.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(SolutionDir)\externals\qt5.7.0\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(SolutionDir)\externals\qt5.7.0\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SolutionDir)\externals\qt5.7.0\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SolutionDir)\externals\qt5.7.0\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SolutionDir)\externals\qt5.7.0\v140\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SolutionDir)\externals\qt5.7.0\v140\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">moc_%(Filename).cpp</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">moc_%(Filename).cpp</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">moc_%(Filename).cpp</Outputs>
@@ -212,14 +214,14 @@ xcopy /Y /E $(ProjectDir)qml $(SolutionDir)build\bin\$(PlatformTarget)\$(Configu
     </CustomBuild>
     <CustomBuild Include="DataWrapper.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SolutionDir)\externals\qt5.7.0\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SolutionDir)\externals\qt5.7.0\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SolutionDir)\externals\qt5.7.0\v140\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SolutionDir)\externals\qt5.7.0\v140\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">moc_%(Filename).cpp</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">moc_%(Filename).cpp</Outputs>
     </CustomBuild>
     <CustomBuild Include="EventWrapper.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SolutionDir)\externals\qt5.7.0\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SolutionDir)\externals\qt5.7.0\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SolutionDir)\externals\qt5.7.0\v140\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SolutionDir)\externals\qt5.7.0\v140\bin\X64\moc.exe" "%(FullPath)" -o "moc_%(Filename).cpp"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">moc_%(Filename).cpp</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">moc_%(Filename).cpp</Outputs>
     </CustomBuild>

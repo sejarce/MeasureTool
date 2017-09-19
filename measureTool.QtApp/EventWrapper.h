@@ -70,6 +70,11 @@ signals:
 	*/
 	void saveAlldataOver();
 
+	/*
+	*@
+	*/
+	void estimateDataSuccess();
+
 private:
 	EventWrapper(QObject* parent = nullptr);
 	~EventWrapper();

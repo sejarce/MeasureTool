@@ -81,6 +81,22 @@ DocumentSPtr DocumentMgr::ImportOgreMesh(const std::wstring& filePath)
 	return newDoc;
 }
 
+DocumentSPtr DocumentMgr::ImportPly(const std::wstring& filePath)
+{
+	auto& imp_ = *ImpUPtr_;
+
+	auto newDoc = std::make_shared<Document>();
+	auto ret = newDoc->ImportPlyFile(filePath);
+	if (!ret)
+	{
+		return{};
+	}
+
+	imp_.DocumentList_.push_back(newDoc);
+
+	return newDoc;
+}
+
 void DocumentMgr::SetActiveDocument(const DocumentSPtr& doc)
 {
 	auto& imp_ = *ImpUPtr_;

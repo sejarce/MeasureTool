@@ -38,6 +38,9 @@
     <Filter Include="proto">
       <UniqueIdentifier>{324cabbf-3826-47b5-9d14-898b0ea49952}</UniqueIdentifier>
     </Filter>
+    <Filter Include="openpose">
+      <UniqueIdentifier>{9be3b133-0d41-47a3-8470-80544c760ce6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Render\ICameraFrameListener.h">
@@ -295,6 +298,15 @@
     <ClInclude Include="Controller\EditFeaturePointController.h">
       <Filter>Controller</Filter>
     </ClInclude>
+    <ClInclude Include="openpose\autoOpenPose.h">
+      <Filter>openpose</Filter>
+    </ClInclude>
+    <ClInclude Include="openpose\JointExtractor.h">
+      <Filter>openpose</Filter>
+    </ClInclude>
+    <ClInclude Include="openpose\util_xieke.h">
+      <Filter>openpose</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Render\ICameraFrameListener.cpp">
@@ -479,6 +491,15 @@
     </ClCompile>
     <ClCompile Include="Controller\EditFeaturePointController.cpp">
       <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="openpose\autoOpenPose.cpp">
+      <Filter>openpose</Filter>
+    </ClCompile>
+    <ClCompile Include="openpose\JointExtractor.cpp">
+      <Filter>openpose</Filter>
+    </ClCompile>
+    <ClCompile Include="openpose\util_xieke.cpp">
+      <Filter>openpose</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -33,6 +33,7 @@ message	PointCloud
 	{
 		OSG = 0;
 		Ogre = 1;
+		Ply = 2;
 	}
 	
 	EPntType point_type = 1;

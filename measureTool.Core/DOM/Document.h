@@ -45,6 +45,8 @@ public:
 
 	bool	ImportFile(const std::wstring& filePath);
 
+	bool	ImportPlyFile(const std::wstring& filePath);
+
 	bool	OpenFile(const std::wstring& filePath);
 
 	const std::wstring& GetFilePath() const;
@@ -75,6 +77,11 @@ public:
 	void		setCrothPoint(const Ogre::Vector3& vec);
 	void		setLeftPoint(const Ogre::Vector3& vec);
 	void		setRightPoint(const Ogre::Vector3& vec);
+
+	std::map<int, Ogre::Vector3> getFeaturePoints() const;
+
+public:
+	bool estimateData();
 
 public:
 

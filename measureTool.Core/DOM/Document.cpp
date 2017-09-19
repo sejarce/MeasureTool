@@ -5,6 +5,8 @@
 #include "DimensionDOM.h"
 #include "CurveLengthDOM.h"
 
+#include "ROM/DocumentROM.h"
+
 #include "Command/CommandMgr.h"
 #include "Command/CreateCMD.h"
 #include "Command/DeleteCMD.h"
@@ -14,7 +16,13 @@
 
 #include "proto/YZMFile.pb.h"
 
+#include "openpose/autoOpenPose.h"
+
 #include "Ogre.h"
+
+#include "Util/StringUtil.h"
+#include "Util/PCLOctree.h"
+#include "Util/MathUtil.h"
 
 #include <array>
 
@@ -37,6 +45,9 @@ public:
 	DocumentROMSPtr				DocumentROM_;
 	uint32_t					DocIndex_{};
 	yzm::PointCloud				PointCloud_;
+
+	CLOUDREAM::CloudColorNormal::Ptr Cloud_{};
+	std::map<int, Ogre::Vector3> FusionJoints_;	
 
 	Ogre::Vector3				CrothPoint_{};
 	Ogre::Vector3				LeftPoint_{};
@@ -82,6 +93,124 @@ public:
 
 		return{};
 	}
+
+	bool CreateItem(IDOMSPtr item, PCLOctreeSPtr Octree, const std::vector<Ogre::Vector3>& SampleDirList, const std::wstring& name, const Ogre::Vector3& pos, const Ogre::Vector3& normal)
+	{
+		if (item->GetType() == IDOM::EDT_ConvexDimension || item->GetType() == IDOM::EDT_Dimension)
+		{
+			//求dom的pointList
+			Ogre::Vector3 pnt = pos;
+			Ogre::Plane pln(normal, pnt);
+			const float resolution = 9e-3;
+			static const auto sampleEps = 5e-3;
+			auto sqSampleEps = sampleEps * sampleEps;
+
+			auto plnList = Octree->PlaneQuery(pln, pnt, resolution);
+			if (plnList.empty())
+				return false;
+
+			Ogre::Vector3 centroid = Ogre::Vector3::ZERO;
+			for (auto& cur : plnList)
+			{
+				centroid += cur;
+			}
+			centroid /= plnList.size();
+
+			std::vector<Ogre::Vector3> frontList, backList;
+
+			std::vector<Ogre::Vector3> tmpFrontList, tmpBackList;
+			Ogre::Vector3 tmpFrontCentroid = Ogre::Vector3::ZERO;
+			Ogre::Vector3 tmpBackCentroid = Ogre::Vector3::ZERO;
+
+			for (auto& curSampleDir : SampleDirList)
+			{
+				tmpFrontList.clear();
+				tmpBackList.clear();
+				tmpFrontCentroid = Ogre::Vector3::ZERO;
+				tmpBackCentroid = Ogre::Vector3::ZERO;
+
+				auto curAdjSampleDir = Ogre::Vector3::UNIT_Y.getRotationTo(pln.normal) * curSampleDir;
+
+				for (auto& curPlnPnt : plnList)
+				{
+					auto projPnt = MathUtil::ProjectPointOnLine(curPlnPnt, centroid, curAdjSampleDir);
+					auto sd = curPlnPnt.squaredDistance(projPnt);
+					if (sd > sqSampleEps)
+					{
+						continue;
+					}
+
+					auto curDir = projPnt - centroid;
+					if (curDir.dotProduct(curAdjSampleDir) > 0)
+					{
+						tmpFrontList.push_back(projPnt);
+						tmpFrontCentroid += projPnt;
+					}
+					else
+					{
+						tmpBackList.push_back(projPnt);
+						tmpBackCentroid += projPnt;
+					}
+				}
+
+				if (!tmpFrontList.empty())
+				{
+					//取中间点
+					//tmpFrontCentroid /= tmpFrontList.size();
+					//取外层点（最远点）
+					float maxSd = 0.0;
+					for (auto curr : tmpFrontList)
+					{
+						auto sd = curr.squaredDistance(centroid);
+						if (sd > maxSd)
+						{
+							maxSd = sd;
+							tmpFrontCentroid = curr;
+						}
+					}
+					frontList.push_back(tmpFrontCentroid);
+				}
+
+				if (!tmpBackList.empty())
+				{
+					//取中间点
+					//tmpBackCentroid /= tmpBackList.size();
+					//取外层点（最远点）
+					float maxSd = 0.0;
+					for (auto curr : tmpBackList)
+					{
+						auto sd = curr.squaredDistance(centroid);
+						if (sd > maxSd)
+						{
+							maxSd = sd;
+							tmpBackCentroid = curr;
+						}
+					}
+					backList.push_back(tmpBackCentroid);
+				}
+			}
+
+			if (frontList.empty() && backList.empty())
+			{
+				return false;
+			}
+
+			std::vector<Ogre::Vector3> CurQueryList;
+			CurQueryList.swap(frontList);
+			std::copy(backList.begin(), backList.end(), std::back_inserter(CurQueryList));
+
+			//set item
+			item->SetOsgPoint(false);
+			item->SetName(name, false);
+			item->DeSerialize(CurQueryList);
+			item->SetSaved();
+			
+			DOMList_.push_back(item);
+			Listener_.OnCreateDOM(item);
+		}
+
+		return true;
+	}
 };
 
 Document::Document() :ImpUPtr_(std::make_unique<Imp>())
@@ -107,6 +236,9 @@ bool Document::ImportFile(const std::wstring& filePath)
 {
 	auto& imp_ = *ImpUPtr_;
 
+	imp_.FusionJoints_.clear();
+	std::map<int, Ogre::Vector3>().swap(imp_.FusionJoints_);
+
 	if ( !boost::filesystem::exists(filePath) )
 	{
 		return false;
@@ -120,9 +252,56 @@ bool Document::ImportFile(const std::wstring& filePath)
 	return MeshUtil::ImportMesh(imp_.PointCloud_, imp_.ImportBuf);
 }
 
+bool Document::ImportPlyFile(const std::wstring& filePath)
+{
+	auto& imp_ = *ImpUPtr_;
+	//imp_.Cloud_ = boost::make_shared<CLOUDREAM::CloudColorNormal>();
+
+	if (!AutoOpenPose::GetInstance().loadFile(StringUtil::UTF16ToUTF8(filePath)))
+		return false;
+
+	if (!AutoOpenPose::GetInstance().researchPoseFeature())
+		return false;
+
+	imp_.FusionJoints_.clear();
+	std::map<int, Ogre::Vector3>().swap(imp_.FusionJoints_);
+	auto fusionJoints = AutoOpenPose::GetInstance().getFusionJoints();
+	for (auto cur : fusionJoints)
+	{
+		imp_.FusionJoints_[cur.first] = { cur.second.x,cur.second.y,cur.second.z };
+	}
+
+	imp_.FilePath_ = filePath;
+	imp_.Cloud_ = AutoOpenPose::GetInstance().getCloudColorNormal();
+
+	//填充imp_.PointCloud_
+	imp_.PointCloud_.Clear();
+	imp_.PointCloud_.set_point_type(yzm::PointCloud_EPntType_Ply);
+
+	auto pointList = imp_.PointCloud_.mutable_point_list();
+
+	for (auto cur : *imp_.Cloud_)
+	{
+		auto newVer = imp_.PointCloud_.add_point_list();
+
+		newVer->set_x(cur.x);
+		newVer->set_y(cur.y);
+		newVer->set_z(cur.z);
+
+		newVer->set_r(cur.b/255.f);
+		newVer->set_g(cur.g/255.f);
+		newVer->set_b(cur.r/255.f);
+	}
+
+	return true;
+}
+
 bool Document::OpenFile(const std::wstring& filePath)
 {
 	auto& imp_ = *ImpUPtr_;
+
+	imp_.FusionJoints_.clear();
+	std::map<int, Ogre::Vector3>().swap(imp_.FusionJoints_);
 
 	boost::filesystem::ifstream ifs(filePath, std::ios::in | std::ios::binary);
 
@@ -490,6 +669,103 @@ void Document::setRightPoint(const Ogre::Vector3& vec)
 {
 	auto& imp_ = *ImpUPtr_;
 	imp_.RightPoint_ = vec;
+}
+
+std::map<int, Ogre::Vector3> Document::getFeaturePoints() const
+{
+	auto &imp_ = *ImpUPtr_;
+	return imp_.FusionJoints_;
+}
+
+bool Document::estimateData()
+{
+	auto& imp_ = *ImpUPtr_;
+
+	if (imp_.FusionJoints_.empty() || !imp_.DocumentROM_.get())
+		return false;
+
+	auto Octree = imp_.DocumentROM_->GetOctree();
+	if (!Octree)
+		return false;
+
+	//绕y轴360°的向量
+	std::vector<Ogre::Vector3> SampleDirList;
+	auto step = 3;
+	auto haflCount = 180 / step;
+	for (auto deg = 0; deg < haflCount; ++deg)
+	{
+		auto curDir = deg * step;
+		Ogre::Quaternion qua;
+		qua.FromAngleAxis(Ogre::Radian(Ogre::Degree(deg * 3)), Ogre::Vector3::UNIT_Y);
+		auto dir = qua * Ogre::Vector3::UNIT_X;
+
+		SampleDirList.push_back(dir);
+	}
+
+	imp_.DocIndex_ = 0;
+
+	//根据特征点，添加自动测量部分数据：
+	//1.	大臂围
+	{
+		//创建dom
+		auto item = imp_.CreateItem(shared_from_this(), IDOM::EDT_Dimension, imp_.DocIndex_++);
+
+		auto pos = imp_.FusionJoints_[2]*0.5 + imp_.FusionJoints_[3]*0.5;
+		auto normal = (imp_.FusionJoints_[2] - imp_.FusionJoints_[3]).normalisedCopy();
+		if (!imp_.CreateItem(item, Octree, SampleDirList, L"大臂围", pos, normal))
+			return false;
+	}
+	//2.	腕围
+	{
+		//创建dom
+		auto item = imp_.CreateItem(shared_from_this(), IDOM::EDT_Dimension, imp_.DocIndex_++);
+
+		auto pos = imp_.FusionJoints_[4];
+		auto normal = (imp_.FusionJoints_[3] - imp_.FusionJoints_[4]).normalisedCopy();
+		if (!imp_.CreateItem(item, Octree, SampleDirList, L"腕围", pos, normal))
+			return false;
+	}
+	//3.	肩宽
+	//4.	背宽
+	//5.	胸围
+	//6.	中腰围
+	//7.	腰围
+	//8.	穿裆长
+	//9.	臀围
+	{
+		//创建dom
+		auto item = imp_.CreateItem(shared_from_this(), IDOM::EDT_Dimension, imp_.DocIndex_++);
+
+		auto pos = imp_.FusionJoints_[11];
+		auto normal = Ogre::Vector3::UNIT_Y;
+		if (!imp_.CreateItem(item, Octree, SampleDirList, L"臀围", pos, normal))
+			return false;
+	}
+	//10.	大腿围
+	{
+		//创建dom
+		auto item = imp_.CreateItem(shared_from_this(), IDOM::EDT_Dimension, imp_.DocIndex_++);
+
+		auto pos = imp_.FusionJoints_[11] * 0.5 + imp_.FusionJoints_[12] * 0.5;
+		auto normal = (imp_.FusionJoints_[11] - imp_.FusionJoints_[12]).normalisedCopy();
+		if (!imp_.CreateItem(item, Octree, SampleDirList, L"大腿围", pos, normal))
+			return false;
+	}
+	//11.	膝围
+	{
+		//创建dom
+		auto item = imp_.CreateItem(shared_from_this(), IDOM::EDT_Dimension, imp_.DocIndex_++);
+
+		auto pos = imp_.FusionJoints_[12];
+		auto normal = (imp_.FusionJoints_[11] - imp_.FusionJoints_[13]).normalisedCopy();
+		if (!imp_.CreateItem(item, Octree, SampleDirList, L"膝围", pos, normal))
+			return false;
+	}
+	//12.	腿长
+	//13.	臂长
+	//14.	身高	
+
+	return true;
 }
 
 void Document::Save()

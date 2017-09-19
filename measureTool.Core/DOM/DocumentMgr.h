@@ -29,6 +29,8 @@ public:
 
 	DocumentSPtr ImportOgreMesh(const std::wstring& filePath);
 
+	DocumentSPtr	ImportPly(const std::wstring& filePath);
+
 	void			SetActiveDocument(const DocumentSPtr& doc);
 
 	DocumentSPtr	GetActiveDocument() const;

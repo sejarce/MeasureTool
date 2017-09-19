@@ -88,7 +88,20 @@ void DimensionDOM::UpdateCurve(const Ogre::Vector3& plnNormal, const PntList& ve
 {
 	auto& imp_ = *ImpUPtr_;
 
-	imp_.PlnNormal_ = plnNormal;
+	if (plnNormal.distance(Ogre::Vector3::ZERO) < 1e-3)
+	{
+		auto siz = verList.size();
+		if (siz > 2)
+		{			
+			auto v1 = verList[siz / 2] - verList[0];
+			auto v2 = verList[siz - 1] - verList[0];
+			imp_.PlnNormal_ = v1.crossProduct(v2).normalisedCopy();
+		}
+	}
+	else
+	{
+		imp_.PlnNormal_ = plnNormal;
+	}
 
 	//根据特征点分块
 	std::vector<Ogre::Vector3> verListCut;

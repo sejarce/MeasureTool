@@ -97,6 +97,8 @@ public:
 
 	float				GetValue() const;
 
+	void				SetValue(float val);
+
 	void				UpdateEditTime();
 
 	uint32_t			GetLastEditTime() const;
@@ -113,6 +115,8 @@ public:
 	void				UpdateDOM();
 
 	void				DeSerialize(const yzm::MeasureItem& buf);
+
+	void				DeSerialize(const PntList& pList);
 
 	void				Serialize(yzm::MeasureItem& buf) const;
 

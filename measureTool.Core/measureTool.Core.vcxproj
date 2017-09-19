@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -26,26 +26,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -72,7 +72,7 @@
     <LibraryPath>../externals/pcl/lib/$(PlatformTarget)/$(Configuration);../externals/Opencascade/lib/$(PlatformTarget)/$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>.;../ogre/ogreMain/include;../ois/includes;../ogre/RenderSystems/GL/include;../ogre/PlugIns/ParticleFX/include;../externals/pcl/include;../externals/Eigen/include;../externals/flann/include;../externals/Opencascade/inc;../externals/libprotobuf/include;$(IncludePath)</IncludePath>
+    <IncludePath>.;../ogre/ogreMain/include;../ois/includes;../ogre/RenderSystems/GL/include;../ogre/PlugIns/ParticleFX/include;../externals/pcl/include;../externals/Eigen/include;../externals/flann/include;../externals/Opencascade/inc;../externals/libprotobuf/include;..\externals\openpose\3rdparty\windows\opencv\include;..\externals\openpose\3rdparty\windows\caffe\include;..\externals\openpose\3rdparty\windows\caffe\include2;..\externals\openpose\3rdparty\windows\caffe3rdparty\include;..\externals\opencv\include;..\externals\openpose\include;$(CUDA_PATH_V8_0)\include;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
     <LibraryPath>../externals/pcl/lib/$(PlatformTarget)/$(Configuration);../externals/Opencascade/lib/$(PlatformTarget)/$(Configuration);$(LibraryPath)</LibraryPath>
@@ -84,7 +84,7 @@
     <LibraryPath>../externals/pcl/lib/$(PlatformTarget)/$(Configuration);../externals/Opencascade/lib/$(PlatformTarget)/$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>.;../ogre/ogreMain/include;../ois/includes;../ogre/RenderSystems/GL/include;../ogre/PlugIns/ParticleFX/include;../externals/pcl/include;../externals/Eigen/include;../externals/flann/include;../externals/Opencascade/inc;../externals/libprotobuf/include;$(IncludePath)</IncludePath>
+    <IncludePath>.;../ogre/ogreMain/include;../ois/includes;../ogre/RenderSystems/GL/include;../ogre/PlugIns/ParticleFX/include;../externals/pcl/include;../externals/Eigen/include;../externals/flann/include;../externals/Opencascade/inc;../externals/libprotobuf/include;..\externals\openpose\3rdparty\windows\opencv\include;..\externals\openpose\3rdparty\windows\caffe\include;..\externals\openpose\3rdparty\windows\caffe\include2;..\externals\openpose\3rdparty\windows\caffe3rdparty\include;..\externals\opencv\include;..\externals\openpose\include;$(CUDA_PATH_V8_0)\include;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)build\lib\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)build\obj\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
     <LibraryPath>../externals/pcl/lib/$(PlatformTarget)/$(Configuration);../externals/Opencascade/lib/$(PlatformTarget)/$(Configuration);$(LibraryPath)</LibraryPath>
@@ -115,7 +115,7 @@ xcopy /Y /E $(SolutionDir)externals\Opencascade\bin\$(PlatformTarget)\$(Configur
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_CAFFE;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <DisableSpecificWarnings>4996;4819</DisableSpecificWarnings>
     </ClCompile>
@@ -163,7 +163,7 @@ xcopy /Y /E $(SolutionDir)externals\Opencascade\bin\$(PlatformTarget)\$(Configur
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_CAFFE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ProgramDataBaseFileName>$(IntDir)$(ProjectName)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <DisableSpecificWarnings>4996;4819</DisableSpecificWarnings>
     </ClCompile>
@@ -231,6 +231,9 @@ xcopy /Y /E $(SolutionDir)externals\Opencascade\bin\$(PlatformTarget)\$(Configur
     <ClInclude Include="FrameEvent\FrameEvent.h" />
     <ClInclude Include="FrameEvent\FrameEventFwd.h" />
     <ClInclude Include="FrameEvent\ToolBarEvent.h" />
+    <ClInclude Include="openpose\autoOpenPose.h" />
+    <ClInclude Include="openpose\JointExtractor.h" />
+    <ClInclude Include="openpose\util_xieke.h" />
     <ClInclude Include="proto\YZMFile.pb.h" />
     <ClInclude Include="proto\YZMMeasureDocument.pb.h" />
     <ClInclude Include="proto\YZMMeasureItem.pb.h" />
@@ -309,6 +312,9 @@ xcopy /Y /E $(SolutionDir)externals\Opencascade\bin\$(PlatformTarget)\$(Configur
     <ClCompile Include="DOM\IDOM.cpp" />
     <ClCompile Include="DOM\LineLengthDOM.cpp" />
     <ClCompile Include="DOM\CurveLengthDOM.cpp" />
+    <ClCompile Include="openpose\autoOpenPose.cpp" />
+    <ClCompile Include="openpose\JointExtractor.cpp" />
+    <ClCompile Include="openpose\util_xieke.cpp" />
     <ClCompile Include="proto\YZMFile.pb.cc" />
     <ClCompile Include="proto\YZMMeasureDocument.pb.cc" />
     <ClCompile Include="proto\YZMMeasureItem.pb.cc" />

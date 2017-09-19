@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ogre", "ogre", "{DC97A817-5886-4D11-879D-EF565789BAEB}"
 EndProject
@@ -24,6 +24,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Plugin_ParticleFX", "ogre\PlugIns\ParticleFX\Plugin_ParticleFX.vcxproj", "{E8609248-D48D-3DA4-9A9B-9599BB2063A6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "measureTool.QtApp", "measureTool.QtApp\measureTool.QtApp.vcxproj", "{7139042D-C1BE-42B8-8ABD-35E58B71A17D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{285D64B8-630D-3635-B488-4BC2B9AB5BA7} = {285D64B8-630D-3635-B488-4BC2B9AB5BA7}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "externals", "externals", "{0C1DEDDD-97E6-4139-9973-98F4A3C61BE5}"
 EndProject
@@ -35,6 +38,11 @@ Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Setup", "Setup\Setup.isproj
 		{E8609248-D48D-3DA4-9A9B-9599BB2063A6} = {E8609248-D48D-3DA4-9A9B-9599BB2063A6}
 		{CCA67BC2-7FE1-3389-A360-C72A5CBF6578} = {CCA67BC2-7FE1-3389-A360-C72A5CBF6578}
 		{670308F0-C65F-3928-8DAD-74733AC0E8A8} = {670308F0-C65F-3928-8DAD-74733AC0E8A8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{202FA36C-0F43-46AC-863B-80B85974EA06}"
+	ProjectSection(ProjectDependencies) = postProject
+		{285D64B8-630D-3635-B488-4BC2B9AB5BA7} = {285D64B8-630D-3635-B488-4BC2B9AB5BA7}
 	EndProjectSection
 EndProject
 Global
@@ -173,6 +181,18 @@ Global
 		{FBDD05B4-429F-4967-985F-82E5E50073A0}.Release|Mixed Platforms.ActiveCfg = SingleImage
 		{FBDD05B4-429F-4967-985F-82E5E50073A0}.Release|Win32.ActiveCfg = SingleImage
 		{FBDD05B4-429F-4967-985F-82E5E50073A0}.Release|x64.ActiveCfg = SingleImage
+		{202FA36C-0F43-46AC-863B-80B85974EA06}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{202FA36C-0F43-46AC-863B-80B85974EA06}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{202FA36C-0F43-46AC-863B-80B85974EA06}.Debug|Win32.ActiveCfg = Debug|Win32
+		{202FA36C-0F43-46AC-863B-80B85974EA06}.Debug|Win32.Build.0 = Debug|Win32
+		{202FA36C-0F43-46AC-863B-80B85974EA06}.Debug|x64.ActiveCfg = Debug|x64
+		{202FA36C-0F43-46AC-863B-80B85974EA06}.Debug|x64.Build.0 = Debug|x64
+		{202FA36C-0F43-46AC-863B-80B85974EA06}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{202FA36C-0F43-46AC-863B-80B85974EA06}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{202FA36C-0F43-46AC-863B-80B85974EA06}.Release|Win32.ActiveCfg = Release|Win32
+		{202FA36C-0F43-46AC-863B-80B85974EA06}.Release|Win32.Build.0 = Release|Win32
+		{202FA36C-0F43-46AC-863B-80B85974EA06}.Release|x64.ActiveCfg = Release|x64
+		{202FA36C-0F43-46AC-863B-80B85974EA06}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

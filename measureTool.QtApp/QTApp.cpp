@@ -1,5 +1,7 @@
 #include "QTApp.h"
 
+#include "openpose/autoOpenPose.h"
+
 #include "QtCore/QTimer"
 #include "QtCore/QObject"
 #include <QtQuick/QQuickView>
@@ -62,6 +64,7 @@ void QTApp::Init(int argc, char** argv)
 {
 	auto& imp_ = *ImpUPtr_;
 
+	AutoOpenPose::GetInstance().Init();
 	OgreEnv::GetInstance().Init();
 
 	{
@@ -72,6 +75,7 @@ void QTApp::Init(int argc, char** argv)
 			imp_.CmdOptions_.emplace(cur.string_key, cur.value);
 		}
 	}
+
 	qDebug("ogre init over");
 	imp_.QApp_ = std::make_unique<QApplication>(argc, argv);
 
@@ -95,11 +99,16 @@ void QTApp::Init(int argc, char** argv)
 			if (fe.GetEvent<SFE_OpenFile>()->LoadingState == SFE_OpenFile::ELS_FinishBuildInfo)
 			{
 				emit EventWrapper::getInstance()->loadSuccess();
+
 				SFE_OpenDocROM fe;
 				fe.DocROM = DocumentMgr::GetInstance().GetActiveDocument()->GetDocumentROM();
 				OgreEnv::GetInstance().PostFrameEventTo3D(fe.ConvertToFrameEvent());
-				qDebug("post openEvent to 3d");
+				qDebug("post openEvent to 3d");					
 			}
+		}
+		else if (fe.GetEventName() == SFE_EstimateData::StaticFrameEventName())
+		{
+			emit EventWrapper::getInstance()->estimateDataSuccess();
 		}
 		else if (fe.GetEventName() == SFE_Selection::StaticFrameEventName())
 		{
@@ -140,10 +149,10 @@ void QTApp::Init(int argc, char** argv)
 			emit EventWrapper::getInstance()->dirtyChanged(fes->dirty);
 		}
 	});
-
 	
 	imp_.View_ = std::make_unique<QQuickView>();
-	imp_.View_->setSource(QUrl::fromLocalFile("qml/main.qml"));
+	auto url = QUrl::fromLocalFile("qml/main.qml");
+	imp_.View_->setSource(url);
 	imp_.View_->setTitle("mainWindow");
 	imp_.View_->setFlags(Qt::FramelessWindowHint | Qt::Window);
 	imp_.View_->setResizeMode(QQuickView::SizeRootObjectToView);
